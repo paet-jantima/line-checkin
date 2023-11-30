@@ -37,10 +37,9 @@ export default class LineComponent implements OnInit {
         userId: profile.userId,
         firstName:profile.displayName
       }
-      console.log(data);
-
-      this.authService.loginLineService(data).subscribe({
+       this.authService.loginLineService(data).subscribe({
         next: (res) => {
+
             localStorage.setItem("user_id", res.data._id);
             this.authService.isloggedIn$.next(true);
             this.router.navigate(['']);
