@@ -1,0 +1,33 @@
+<div class="lg:w-3/12 mt-2 p-10 shadow-lg mx-auto">
+  <h3 class="text-3xl text-center font-semibold py-5">Register</h3>
+  <form [formGroup]="registerForm" class="flex flex-col ">
+    <div class="flex flex-col mt-4 mb-1">
+      <input formControlName="firstName" class="p-2 border border-gray-300 rounded" type="text" placeholder="FirstName">
+      <span *ngIf="registerForm.hasError('require','firstName') && registerForm.controls['firstName'].dirty" class="text-red-500">FirstName is const require</span>
+    </div>
+    <div class="flex flex-col mt-4 mb-1">
+      <input formControlName="lastName" class="p-2 border border-gray-300 rounded" type="text" placeholder="LastName">
+      <span *ngIf="registerForm.hasError('require','lastName') && registerForm.controls['lastName'].dirty" class="text-red-500">LastName is require</span>
+    </div>
+    <div class="flex flex-col mt-4 mb-1">
+      <input formControlName="email" class="p-2 border border-gray-300 rounded" type="text" placeholder="Email">
+      <span *ngIf="registerForm.hasError('require','email') && registerForm.controls['email'].dirty" class="text-red-500">Email is require</span>
+    </div>
+    <div class="flex flex-col mt-4 mb-1">
+      <input formControlName="phoneNumber" class="p-2 border border-gray-300 rounded" type="text" placeholder="PhoneNumber">
+      <span *ngIf="registerForm.hasError('require','phoneNumber') && registerForm.controls['phoneNumber'].dirty" class="text-red-500">PhoneNumber is require</span>
+    </div>
+    <div class="flex flex-col mt-4 mb-1">
+      <input formControlName="address" class="p-2 border border-gray-300 rounded" type="text" placeholder="Address">
+      <span *ngIf="registerForm.hasError('require','address') && registerForm.controls['address'].dirty" class="text-red-500">Address is require</span>
+    </div>
+    <div class="flex flex-col mt-4 mb-1">
+      <input formControlName="jobPosition" class="p-2 border border-gray-300 rounded" type="text" placeholder="JobPosition">
+      <span *ngIf="registerForm.hasError('require','jobPosition') && registerForm.controls['jobPosition'].dirty" class="text-red-500">JobPosition is require</span>
+    </div>
+    <button [disabled]="registerForm.invalid" [class.disabled]="registerForm.invalid" (click)="register()" class="bg-indigo-500 p-2 rounded mt-3 text-white">Submit</button>
+    <div class="flex justify-center mt-5" >
+      <span>Alrready Have Account</span><a class="text-indigo-500 ml-2 cursor-pointer">Login Mere</a>
+    </div>
+  </form>
+</div>
