@@ -20,27 +20,8 @@ export default class LoginComponent {
   loginForm !: FormGroup;
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.required],
-
-    });
-
+    this.initLine();
   }
-  login(){
-   this.authService.loginService(this.loginForm.value)
-   .subscribe({
-    next:(res)=>{
-      alert("Login success")
-      localStorage.setItem("user_id",res.data._id);
-      this.authService.isloggedIn$.next(true);
-      this.router.navigate(['home']);
-      this.loginForm.reset();
-    },error:(err)=>{
-      console.log(err)
-    }
-   })
-   }
 
   initLine(): void {
     liff.init({ liffId: '2001900543-EvW7belD' }, () => {

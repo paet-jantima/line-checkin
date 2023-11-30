@@ -77,16 +77,26 @@ export const login = async (req, res, next) =>{
 }
 
 export const loginLine = async (req, res, next) => {
-    try {
+  const role = await Role.find({role: 'User'});  
+  try {
       const user = await User.findOne({ userId: req.body.userId }).populate("roles", "role");
 
       if (!user) {
-        return res.status(200).json({
-          status: 200,
-          message: "User not found",
-          data: false,
+
+        const newUser = new User({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            userId : req.body.userId,
+            phoneNumber: req.body.phoneNumber,
+            address: req.body.address,
+            jobPosition: req.body.jobPosition,
+            roles: role,
+    
         });
-      } else {
+        await newUser.save();
+        return res.status(200).json("User registered ")
+      } 
         const token = Jwt.sign(
           { id: user.id, isAdmin: user.isAdmin, roles: user.roles },
           process.env.JWT_SECRET
@@ -98,7 +108,7 @@ export const loginLine = async (req, res, next) => {
             message: "Login successful",
             data: user,
           });
-      }
+     
     } catch (error) {
       return next(CreateError(500, "Something went wrong"));
     }

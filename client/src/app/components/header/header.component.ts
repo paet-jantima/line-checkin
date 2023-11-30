@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterLinkActive, RouterModule } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,14 +13,21 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderComponent implements OnInit {
   authService = inject(AuthService);
   isloggedIn: boolean = false;
+  router = inject(Router);
   ngOnInit(): void {
     this.authService.isloggedIn$.subscribe(res => {
       this.isloggedIn = this.authService.isLoggedIn();
     })
+
   }
 
+
+
+
   logout() {
-    localStorage.removeItem("user_id");
+    localStorage.clear();
     this.authService.isloggedIn$.next(false);
+    window.location.reload();
+
   }
 }

@@ -35,22 +35,15 @@ export default class LineComponent implements OnInit {
       const profile = await liff.getProfile();
       var data={
         userId: profile.userId,
+        firstName:profile.displayName
       }
+      console.log(data);
 
       this.authService.loginLineService(data).subscribe({
         next: (res) => {
-          if (res && res.status === 200 && res.data) { // Ensure proper data handling based on the response structure
-            alert("Login success");
             localStorage.setItem("user_id", res.data._id);
             this.authService.isloggedIn$.next(true);
-            this.router.navigate(['home']);
-          } else {
-            alert("User not registered. Redirecting to register page.");
-            this.router.navigate(['register']);
-          }
-        },
-        error: (err) => {
-          console.log(err);
+            this.router.navigate(['']);
         }
       });
     } catch (error) {

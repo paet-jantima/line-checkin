@@ -5,24 +5,28 @@ const UserSchema = mongoose.Schema(
       firstName: {
         type: String,
         // required: true
+        default: ""
       },
       lastName: {
         type: String,
         // required: true
+        default: ""
       },
       userId: {
         type: String,
         // required: true
+        default: ""
       },
       email: {
         type: String,
         // require: true,
         // unique : true
+        default: ""
       },
       profileImage: {
         type: String,
         // require: false,
-        default: "url"
+        default: ""
       },
       isAdmin: {
         type: Boolean,
@@ -30,22 +34,20 @@ const UserSchema = mongoose.Schema(
       },
       roles: {
         type: [Schema.Types.ObjectId],
-        require: true,
+        //require: true,
         ref: "Role"
       },
       phoneNumber: {
         type: String,
-        // You might want to add validation for phone numbers
-        // Example: validate: /^\d{10}$/ (10 digits only)
-        // Or use libraries like `validator` for more complex validations
+        default: ""
       },
       address: {
         type: String,
-        // Add any specific validation as needed
+        default: ""
       },
       jobPosition: {
         type: String,
-        // Add specific validations or default values if required
+        default: ""
       }
     },
     {
