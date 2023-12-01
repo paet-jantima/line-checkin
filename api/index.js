@@ -6,6 +6,7 @@ import roleRoute from './routes/role.js';
 import authRoute from './routes/auth.js';
 import userRoute from './routes/user.js';
 import cookieParser from 'cookie-parser';
+import timeRoute from './routes/time.js';
 const app = express();
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(cors({
 app.use("/api/role", roleRoute);
 app.use("/api/auth", authRoute); 
 app.use("/api/user", userRoute); 
+app.use("/api/time", timeRoute); 
 
 //error handler middleware
 
