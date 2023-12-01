@@ -95,7 +95,6 @@ export const loginLine = async (req, res, next) => {
     
         });
         await newUser.save();
-        return res.status(200).json("User registered ")
       } 
         const token = Jwt.sign(
           { id: user.id, isAdmin: user.isAdmin, roles: user.roles },

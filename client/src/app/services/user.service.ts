@@ -10,17 +10,13 @@ export class UserService {
   http = inject(HttpClient);
 
 
-  registerService(registerObj: any) {
-    return this.http.post<any>(`${apiUrls.authServiceApi}register`, registerObj);
-  }
-
-
-
   getAllUsers(): Observable<any> {
     return this.http.get<any>(`${apiUrls.userServiceApi}/user`);
   }
 
-  getUserById(userId: string): Observable<any> {
-    return this.http.get<any>(`${apiUrls}/user/${userId}`);
+  getUserById(userId: any) {
+    return this.http.get<any>(`${apiUrls.userServiceApi}/User/${userId}`);
   }
+
+
 }
