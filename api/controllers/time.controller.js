@@ -2,6 +2,8 @@ import moment from 'moment';
 import 'moment-timezone';
 import Time from '../models/Time.js'; 
 import User from '../models/User.js';
+import { DateTime } from 'luxon';
+
 
 
 export const recordCheckIn = async (req, res, next) => {
@@ -66,20 +68,32 @@ export const recordCheckOut = async (req, res, next) => {
     }
   };
 
-  // ดึงรายการบันทึกเวลาทั้งหมด
-export const getAllTimeRecords = async (req, res, next) => {
+  export const getAllTimeRecords = async (req, res, next) => {
     try {
       const allTimeRecords = await Time.find({});
-      res.status(200).json(allTimeRecords);
+      const recordsInThailandTime = allTimeRecords.map(record => {
+        // Convert UTC timestamp to Thailand timezone using Luxon
+        const checkinThailandTime = DateTime.fromJSDate(record.checkin, { zone: 'utc' }).setZone('Asia/Bangkok');
+        const checkoutThailandTime = record.checkout ? DateTime.fromJSDate(record.checkout, { zone: 'utc' }).setZone('Asia/Bangkok') : null;
+  
+        return {
+          userId: record.userId,
+          checkin: checkinThailandTime.toJSDate(),
+          checkout: checkoutThailandTime ? checkoutThailandTime.toJSDate() : null
+        };
+      });
+  
+      res.status(200).json(recordsInThailandTime);
     } catch (error) {
       console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
       res.status(500).json({ error: 'มีข้อผิดพลาดในการดึงข้อมูล' });
     }
   };
   
+  
   export const getMyTimeRecords = async (req, res, next) => {
     const userId = req.params.id; // Access userId from req.params
-    
+  
     try {
       // Check if the user with the received userId exists in the system
       const userExists = await User.exists({ _id: userId });
@@ -90,12 +104,26 @@ export const getAllTimeRecords = async (req, res, next) => {
   
       // If the user exists, fetch their time records
       const myTimeRecords = await Time.find({ userId });
-      res.status(200).json(myTimeRecords);
+  
+      // Convert UTC timestamps to Thailand timezone (+07:00)
+      const recordsInThailandTime = myTimeRecords.map(record => {
+        const adjustedCheckin = new Date(record.checkin).toLocaleString('en-US', { timeZone: 'Asia/Bangkok' });
+        const adjustedCheckout = record.checkout ? new Date(record.checkout).toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }) : null;
+  
+        return {
+          userId: record.userId,
+          checkin: adjustedCheckin,
+          checkout: adjustedCheckout,
+        };
+      });
+  
+      res.status(200).json(recordsInThailandTime);
     } catch (error) {
       console.error('เกิดข้อผิดพลาดในการดึงข้อมูลของตัวเอง:', error);
       res.status(500).json({ error: 'มีข้อผิดพลาดในการดึงข้อมูลของตัวเอง' });
     }
   };
+  
   
 
   export const editTimeRecord = async (req, res, next) => {

@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
     const data = {
       userId: localStorage.getItem('user_id')
     };
-    console.log(data);
+
 
     this.timeService.getMytime(data.userId).subscribe(
       (timeData) => {
