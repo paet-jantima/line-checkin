@@ -77,20 +77,18 @@ export const getAllTimeRecords = async (req, res, next) => {
     }
   };
   
-  // ดึงรายการบันทึกเวลาของตัวเองเท่านั้น (โดยใช้ userId จาก req.body หรือ req.params)
   export const getMyTimeRecords = async (req, res, next) => {
-    const { userId } = req.body; // ใช้ req.params ในการรับ userId
-  
-    try {
-      // ตรวจสอบว่า userId ที่รับมามีอยู่ในระบบหรือไม่
-      const userExists = await User.exists(  { userId: userId });
+    const userId = req.params.id; // Access userId from req.params
     
+    try {
+      // Check if the user with the received userId exists in the system
+      const userExists = await User.exists({ _id: userId });
   
       if (!userExists) {
         return res.status(404).json({ error: 'ผู้ใช้งานไม่มีอยู่ในระบบ' });
       }
   
-      // หากผู้ใช้มีอยู่ในระบบ ดึงข้อมูลการทำงานของผู้ใช้นั้นออกมา
+      // If the user exists, fetch their time records
       const myTimeRecords = await Time.find({ userId });
       res.status(200).json(myTimeRecords);
     } catch (error) {
@@ -98,6 +96,7 @@ export const getAllTimeRecords = async (req, res, next) => {
       res.status(500).json({ error: 'มีข้อผิดพลาดในการดึงข้อมูลของตัวเอง' });
     }
   };
+  
 
   export const editTimeRecord = async (req, res, next) => {
     const { recordId, checkin, checkout } = req.body; // รับค่า recordId, checkin และ checkout จาก req.body

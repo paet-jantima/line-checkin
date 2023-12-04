@@ -11,10 +11,22 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getAllUsers(): Observable<any> {
-    return this.http.get<any>(`${apiUrls.userServiceApi}/user`);
+    return this.http.get<any>(`${apiUrls.userServiceApi}/User`);
   }
 
   getUserById(userId: any): Observable<any> {
     return this.http.get<any>(`${apiUrls.userServiceApi}/User/${userId}`);
   }
+
+  updateById(userId: any): Observable<any> {
+    return this.http.put<any>(`${apiUrls.userServiceApi}/User/update/`,userId);
+  }
+
+  delete(userId: any): Observable<any> {
+    return this.http.delete<any>(`${apiUrls.userServiceApi}/User/delete/`,userId);
+  }
+
+
+
+
 }

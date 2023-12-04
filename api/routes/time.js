@@ -7,11 +7,11 @@ router.post('/checkin',recordCheckIn)
 
 router.post('/checkout',recordCheckOut)
 
-router.get('/gettime',getAllTimeRecords)
+router.get('/getall',getAllTimeRecords)
 
 router.post('/edit',editTimeRecord)
 
-router.get('/getmytime',getMyTimeRecords)
+router.get('/getmytime/:id',getMyTimeRecords)
 
 
 
