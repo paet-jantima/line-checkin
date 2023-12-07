@@ -66,62 +66,17 @@ export class HomeComponent implements OnInit {
   }
 
   getmytime() {
-    const data = {
-      userId: localStorage.getItem('user_id')
-    };
-
-
-    this.timeService.getMytime(data.userId).subscribe(
-      (timeData) => {
-        // Handle successful response here
-        console.log('User time data:', timeData);
-        // You can assign the time data to a variable or perform any other actions
-      },
-      (error) => {
-        // Handle errors here
-        console.error('Error fetching user time:', error);
-        // Perform error handling or show error messages to the user
-      }
-    );
+    this.router.navigate(['mytimereport']);
   }
 
   checkin() {
-    const data = {
-      userId: localStorage.getItem('user_id')
-    };
-
-    this.timeService.checkIn(data).subscribe(
-      (response) => {
-        // Handle successful check-in response here
-        console.log('Check-in successful:', response);
-        // You can perform any necessary actions upon successful check-in
-      },
-      (error) => {
-        // Handle errors here
-        console.error('Error during check-in:', error);
-        // Perform error handling or show error messages to the user
-      }
-    );
+    // ส่งค่า check-in ไปยังหน้า scanner
+    this.router.navigate(['scanner'], { queryParams: { type: 'checkin' } });
   }
 
-
   checkout() {
-    const data = {
-      userId: localStorage.getItem('user_id')
-    };
-
-    this.timeService.checkOut(data).subscribe(
-      (response) => {
-        // Handle successful checkout response here
-        console.log('Checkout successful:', response);
-        // You can perform any necessary actions upon successful checkout
-      },
-      (error) => {
-        // Handle errors here
-        console.error('Error during checkout:', error);
-        // Perform error handling or show error messages to the user
-      }
-    );
+    // ส่งค่า check-out ไปยังหน้า scanner
+    this.router.navigate(['scanner'], { queryParams: { type: 'checkout' } });
   }
 
 

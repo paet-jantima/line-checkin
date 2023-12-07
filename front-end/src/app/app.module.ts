@@ -11,6 +11,12 @@ import { HomeComponent } from './pages/home/home.component';
 import { LineComponent } from './pages/line/line.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ScannerComponent } from './pages/scanner/scanner.component';
+import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { MytimereportComponent } from './pages/mytimereport/mytimereport.component';
+
+LOAD_WASM().subscribe()
 
 @NgModule({
   declarations: [
@@ -19,14 +25,18 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     HomeComponent,
     LineComponent,
-    LoginComponent
+    LoginComponent,
+    ScannerComponent,
+    MytimereportComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxScannerQrcodeModule,
+    ZXingScannerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
