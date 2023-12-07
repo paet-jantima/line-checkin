@@ -6,8 +6,8 @@ const TimeSchema = new mongoose.Schema({
       required: true // ระบุให้ userId เป็นข้อมูลที่ต้องระบุ
     },
     checkin: {
-      type: Date,
-      default: () => new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Bangkok' })) // Set default as current date and time in Thailand timezone
+      type: Date
+      
     },
     checkout: {
       type: Date

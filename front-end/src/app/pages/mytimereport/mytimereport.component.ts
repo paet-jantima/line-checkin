@@ -1,40 +1,66 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TimeRecordService } from 'src/app/services/time/time.service';
+import { timeData } from 'src/app/timedata';
+
+
+interface ProcessedTimeData extends timeData {
+  checkinDate: string;
+  checkinTime: string;
+  checkoutDate: string;
+  checkoutTime: string;
+}
 
 @Component({
   selector: 'app-mytimereport',
   templateUrl: './mytimereport.component.html',
   styleUrls: ['./mytimereport.component.scss']
 })
-export class MytimereportComponent {
+export class MytimereportComponent implements OnInit {
+  timeData: ProcessedTimeData[] = [];
 
   constructor(
     private router: Router,
-    private timeService:TimeRecordService,
+    private timeService: TimeRecordService,
   ) {}
 
   ngOnInit(): void {
-
+    this.getmytime();
   }
 
   getmytime() {
-    const data = {
-      userId: localStorage.getItem('user_id')
-    };
+    const userId = localStorage.getItem('user_id');
 
-
-    this.timeService.getMytime(data.userId).subscribe(
-      (timeData) => {
-        // Handle successful response here
+    this.timeService.getMytime(userId).subscribe(
+      (timeData: timeData[]) => {
         console.log('User time data:', timeData);
-        // You can assign the time data to a variable or perform any other actions
+        this.timeData = this.processDateTimeData(timeData);
       },
       (error) => {
-        // Handle errors here
         console.error('Error fetching user time:', error);
-        // Perform error handling or show error messages to the user
+        // Handle errors here
       }
     );
+  }
+
+  private processDateTimeData(data: timeData[]): ProcessedTimeData[] {
+    const processedData: ProcessedTimeData[] = [];
+
+    data.forEach((item) => {
+      const checkinDateTime = new Date(item.checkin);
+      const checkoutDateTime = new Date(item.checkout);
+
+      const processedItem: ProcessedTimeData = {
+        ...item,
+        checkinDate: checkinDateTime.toLocaleDateString(),
+        checkinTime: checkinDateTime.toLocaleTimeString(),
+        checkoutDate: checkoutDateTime.toLocaleDateString(),
+        checkoutTime: checkoutDateTime.toLocaleTimeString(),
+      };
+
+      processedData.push(processedItem);
+    });
+
+    return processedData;
   }
 }

@@ -37,7 +37,6 @@ export class HomeComponent implements OnInit {
       this.dateTime = new Date();
     })
     this.getUserById();
-    this.getmytime();
   }
 
   getUserById(): void {
