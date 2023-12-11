@@ -4,69 +4,94 @@ import Time from '../models/Time.js';
 import User from '../models/User.js';
 import { DateTime } from 'luxon';
 
-
-
 export const recordCheckIn = async (req, res, next) => {
-    const { userId } = req.body;
-    
-    try {
-      const todayStart = moment().startOf('day'); // หาเวลาเริ่มต้นของวันนี้
-      const todayEnd = moment().endOf('day'); // หาเวลาสิ้นสุดของวันนี้
-  
-      // ตรวจสอบว่ามีการบันทึกเวลาเข้างานของ userId ในช่วงเวลาของวันนี้หรือไม่
-      const existingCheckIn = await Time.findOne({
-        userId,
-        checkin: { $gte: todayStart, $lte: todayEnd }
-      });
-  
-      if (existingCheckIn) {
-        // ถ้ามีการบันทึกเวลาเข้างานแล้วในวันนี้
-        return res.status(400).json({ error: 'คุณได้ทำการเช็คอินไปแล้วในวันนี้' });
+  const { userId } = req.body;
+
+  try {
+      const thaiTime = moment().tz('Asia/Bangkok');
+      const formattedTime = thaiTime.format('YYYY-MM-DD HH:mm:ss');
+
+      const todayStart = thaiTime.clone().startOf('day');
+      const todayEnd = thaiTime.clone().endOf('day');
+
+      const existingUser = await User.findOne({ _id: userId });
+
+      if (!existingUser) {
+          return res.status(400).json({ error: 'ไม่พบผู้ใช้งานในระบบ' });
       }
-  
-      // ถ้ายังไม่มีการบันทึกเวลาเข้างานในวันนี้ ทำการบันทึก
-      const currentTime = new Time({ userId }); 
+
+      const existingCheckIn = await Time.findOne({
+          userId,
+          checkin: { $gte: todayStart, $lte: todayEnd }
+      });
+
+      if (existingCheckIn && existingCheckIn.checkout) {
+          return res.status(400).json({ error: 'คุณได้ทำการเช็คอินและเช็คเอาท์ไปแล้วในวันนี้' });
+      }
+
+      if (existingCheckIn && !existingCheckIn.checkout) {
+          return res.status(400).json({ error: 'คุณได้ทำการเช็คอินไปแล้วในวันนี้' });
+      }
+
+      const checkInTime = thaiTime.hours() * 60 + thaiTime.minutes();
+      const lateThreshold = 9 * 60 + 20;
+
+      const status = checkInTime > lateThreshold ? 'มาสาย' : 'ปกติ';
+
+      const currentTime = new Time({ userId: existingUser._id, checkin: formattedTime, status });
       await currentTime.save();
+
+      if (status === 'มาสาย') {
+          // เพิ่มจำนวนวันที่มาสาย (lateDays) ในข้อมูลผู้ใช้งาน
+          existingUser.lateDays = (existingUser.lateDays || 0) + 1;
+          await existingUser.save();
+      }
+
       console.log('บันทึกเวลาการเข้างานสำเร็จ');
       res.status(200).json({ message: 'บันทึกเวลาการเข้างานสำเร็จ' });
-    } catch (error) {
+  } catch (error) {
       console.error('เกิดข้อผิดพลาดในการบันทึกเวลา:', error);
       res.status(500).json({ error: 'มีข้อผิดพลาดในการบันทึกเวลา' });
-    }
-  };
+  }
+};
+
+
 
 export const recordCheckOut = async (req, res, next) => {
-    const { userId } = req.body;
-    
-    try {
-      const todayStart = moment().startOf('day'); // หาเวลาเริ่มต้นของวันนี้
-      const todayEnd = moment().endOf('day'); // หาเวลาสิ้นสุดของวันนี้
-  
-      // ตรวจสอบว่ามีการบันทึกเวลาเข้างานของ userId ในช่วงเวลาของวันนี้หรือไม่
-      const existingCheckIn = await Time.findOne({
-        userId,
-        checkin: { $gte: todayStart, $lte: todayEnd }
-      });
-  
-      if (existingCheckIn) {
-        if (existingCheckIn.checkout) {
-          return res.status(400).json({ error: 'คุณได้ทำการเช็คเอาท์ไปแล้วในวันนี้' });
-        } else {
-          // ทำการบันทึก checkout ของผู้ใช้งาน
-          existingCheckIn.checkout = moment(); // กำหนดค่า checkout เป็นเวลาปัจจุบัน
-          await existingCheckIn.save();
-          console.log('บันทึกเวลาการเช็คเอาท์สำเร็จ');
-          return res.status(200).json({ message: 'บันทึกเวลาการเช็คเอาท์สำเร็จ' });
-        }
+  const { userId } = req.body;
+
+  try {
+      const todayStart = moment().startOf('day');
+      const todayEnd = moment().endOf('day');
+
+      const existingUser = await User.findOne({ _id: userId }); // Search for user using _id
+
+      if (!existingUser) {
+          return res.status(400).json({ error: 'ไม่พบผู้ใช้งานในระบบ' });
       }
-  
-      // ถ้ายังไม่มีการบันทึกเวลาเข้างานในวันนี้ จะไม่สามารถทำการ checkout ได้
-      return res.status(400).json({ error: 'คุณยังไม่ได้ทำการเช็คอินในวันนี้' });
-    } catch (error) {
+
+      const existingCheckIn = await Time.findOne({
+          userId,
+          checkin: { $gte: todayStart, $lte: todayEnd },
+          checkout: { $exists: false } // เพิ่มเงื่อนไขเช็คเอาท์ไม่มีการบันทึก
+      });
+
+      if (!existingCheckIn) {
+          return res.status(400).json({ error: 'คุณยังไม่ได้ทำการเช็คอินหรือเช็คเอาท์ไปแล้วในวันนี้' });
+      }
+
+      // ทำการเช็คเอาท์
+      existingCheckIn.checkout = moment().format('YYYY-MM-DD HH:mm:ss');
+      await existingCheckIn.save();
+      console.log('บันทึกเวลาการเช็คเอาท์สำเร็จ');
+      
+      return res.status(200).json({ message: 'บันทึกเวลาการเช็คเอาท์สำเร็จ' });
+  } catch (error) {
       console.error('เกิดข้อผิดพลาดในการบันทึกเวลา:', error);
-      res.status(500).json({ error: 'มีข้อผิดพลาดในการบันทึกเวลา' });
-    }
-  };
+      return res.status(500).json({ error: 'มีข้อผิดพลาดในการบันทึกเวลา' });
+  }
+};
+
 
   export const getAllTimeRecords = async (req, res, next) => {
     try {
@@ -114,6 +139,7 @@ export const recordCheckOut = async (req, res, next) => {
           userId: record.userId,
           checkin: adjustedCheckin,
           checkout: adjustedCheckout,
+          status: record.status
         };
       });
   

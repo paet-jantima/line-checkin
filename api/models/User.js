@@ -48,7 +48,15 @@ const UserSchema = mongoose.Schema(
       jobPosition: {
         type: String,
         default: ""
-      }
+      },
+      absentDays: {
+        type: Number,
+        default: 0,
+      },
+      lateDays: {
+        type: Number,
+        default: 0,
+      },
     },
     {
       timestamps: true,

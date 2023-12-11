@@ -7,4 +7,5 @@ export interface timeData {
   userId: string;
   checkin: string;
   checkout: string;
+  status: string;
 }
