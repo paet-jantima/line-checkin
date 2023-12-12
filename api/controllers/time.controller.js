@@ -61,34 +61,52 @@ export const recordCheckOut = async (req, res, next) => {
   const { userId } = req.body;
 
   try {
-      const todayStart = moment().startOf('day');
-      const todayEnd = moment().endOf('day');
+    const todayStart = moment().startOf('day');
+    const todayEnd = moment().endOf('day');
 
-      const existingUser = await User.findOne({ _id: userId }); // Search for user using _id
+    const existingUser = await User.findOne({ _id: userId });
 
-      if (!existingUser) {
-          return res.status(400).json({ error: 'ไม่พบผู้ใช้งานในระบบ' });
-      }
+    if (!existingUser) {
+      return res.status(400).json({ error: 'ไม่พบผู้ใช้งานในระบบ' });
+    }
 
+    const existingCheckOut = await Time.findOne({
+      userId,
+      createdAt: { $gte: todayStart, $lte: todayEnd },
+      checkout: { $exists: true } // ตรวจสอบว่ามีการเช็คเอาท์ไปแล้วหรือไม่
+    });
+
+    if (!existingCheckOut) {
       const existingCheckIn = await Time.findOne({
-          userId,
-          checkin: { $gte: todayStart, $lte: todayEnd },
-          checkout: { $exists: false } // เพิ่มเงื่อนไขเช็คเอาท์ไม่มีการบันทึก
+        userId,
+        createdAt: { $gte: todayStart, $lte: todayEnd },
+        checkin: { $exists: true } // ตรวจสอบการเช็คอินที่ทำไปแล้วในวันนี้
       });
 
       if (!existingCheckIn) {
-          return res.status(400).json({ error: 'คุณยังไม่ได้ทำการเช็คอินหรือเช็คเอาท์ไปแล้วในวันนี้' });
+        // สร้างข้อมูลการเช็คอินใหม่สำหรับวันนี้
+        const newCheckIn = new Time({
+          userId: existingUser._id,
+          status: 'ไม่ได้เช้คอิน',
+          checkout:moment().format('YYYY-MM-DD HH:mm:ss')
+        });
+        await newCheckIn.save();
+
+        console.log('สร้างข้อมูลเช็คอินใหม่สำหรับวันนี้แล้ว');
+      } else {
+        // ทำการเช็คเอาท์
+        existingCheckIn.checkout = moment().format('YYYY-MM-DD HH:mm:ss');
+        await existingCheckIn.save();
+        console.log('บันทึกเวลาการเช็คเอาท์สำเร็จ');
       }
 
-      // ทำการเช็คเอาท์
-      existingCheckIn.checkout = moment().format('YYYY-MM-DD HH:mm:ss');
-      await existingCheckIn.save();
-      console.log('บันทึกเวลาการเช็คเอาท์สำเร็จ');
-      
       return res.status(200).json({ message: 'บันทึกเวลาการเช็คเอาท์สำเร็จ' });
+    } else {
+      return res.status(400).json({ error: 'คุณได้ทำการเช็คเอาท์ไปแล้วในวันนี้' });
+    }
   } catch (error) {
-      console.error('เกิดข้อผิดพลาดในการบันทึกเวลา:', error);
-      return res.status(500).json({ error: 'มีข้อผิดพลาดในการบันทึกเวลา' });
+    console.error('เกิดข้อผิดพลาดในการบันทึกเวลา:', error);
+    return res.status(500).json({ error: 'มีข้อผิดพลาดในการบันทึกเวลา' });
   }
 };
 
@@ -180,4 +198,46 @@ export const recordCheckOut = async (req, res, next) => {
       res.status(500).json({ error: 'มีข้อผิดพลาดในการแก้ไขข้อมูลเวลา' });
     }
   };
+  
+  export const checkAndUpdateStatus = async () => {
+    try {
+      const thaiTime = moment().tz('Asia/Bangkok');
+      const todayStart = thaiTime.clone().startOf('day');
+      const todayEnd = thaiTime.clone().endOf('day');
+  
+      const allUsers = await User.find();
+  
+      for (const user of allUsers) {
+        const existingCheckIn = await Time.findOne({
+          userId: user._id,
+          createdAt: { $gte: todayStart, $lte: todayEnd }
+        });
+  
+        if (!existingCheckIn) {
+          // ถ้าไม่มีข้อมูลสำหรับวันนี้ ให้สร้างข้อมูลใหม่
+          const newCheckIn = new Time({
+            userId: user._id,
+            createdAt: thaiTime.toDate(),
+            status: 'ขาดงาน'
+          });
+          await newCheckIn.save();
+  
+          user.absentDays = (user.absentDays || 0) + 1; // เพิ่มจำนวนวันขาดงาน
+          await user.save();
+  
+          console.log('สร้างข้อมูลเวลาใหม่สำหรับวันนี้แล้ว');
+        }  else if (!existingCheckIn.checkout && existingCheckIn.status !== 'ขาดงาน' && existingCheckIn.status !== 'วันหยุด') {
+          // ถ้ามีเพียงเช็คอินเท่านั้น และสถานะไม่ใช่ "ขาดงาน" หรือ "วันหยุด" ให้เช็คเอ้าท์ที่ 18:00 (UTC+0)
+          existingCheckIn.checkout = thaiTime.clone().utc().set({ hour: 18, minute: 0, second: 0 }).format('YYYY-MM-DD HH:mm:ss');
+          await existingCheckIn.save();
+          console.log('เช็คเอาท์ใหม่เพื่อผู้ใช้งาน');
+        } 
+      }
+  
+      console.log('ตรวจสอบและปรับสถานะเรียบร้อย');
+    } catch (error) {
+      console.error('เกิดข้อผิดพลาดในการตรวจสอบและปรับสถานะ:', error);
+    }
+  };
+  
   

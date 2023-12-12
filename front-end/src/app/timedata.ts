@@ -1,6 +1,6 @@
 
 export interface timeData {
-  checkinDate: string;
+  checkinDate: string ;
   checkinTime: string;
   checkoutDate: string;
   checkoutTime: string;

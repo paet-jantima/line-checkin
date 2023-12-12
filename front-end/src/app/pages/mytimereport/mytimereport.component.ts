@@ -52,14 +52,15 @@ export class MytimereportComponent implements OnInit {
 
       const processedItem: ProcessedTimeData = {
         ...item,
-        checkinDate: checkinDateTime.toLocaleDateString(),
-        checkinTime: checkinDateTime.toLocaleTimeString(),
-        checkoutDate: checkoutDateTime.toLocaleDateString(),
-        checkoutTime: checkoutDateTime.toLocaleTimeString(),
+        checkinDate: item.checkin ? new Date(item.checkin).toLocaleDateString() : '',
+    checkinTime: item.checkin ? new Date(item.checkin).toLocaleTimeString() : '',
+    checkoutDate: item.checkout ? new Date(item.checkout).toLocaleDateString() : '',
+    checkoutTime: item.checkout ? new Date(item.checkout).toLocaleTimeString() : '',
       };
 
       processedData.push(processedItem);
     });
+    console.log(processedData)
 
     return processedData;
   }
