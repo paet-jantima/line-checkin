@@ -15,6 +15,9 @@ import { ScannerComponent } from './pages/scanner/scanner.component';
 import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { MytimereportComponent } from './pages/mytimereport/mytimereport.component';
+import { UserslistComponent } from './pages/userslist/userslist.component';
+import { EdituserComponent } from './pages/edituser/edituser.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 LOAD_WASM().subscribe()
 
@@ -27,7 +30,10 @@ LOAD_WASM().subscribe()
     LineComponent,
     LoginComponent,
     ScannerComponent,
-    MytimereportComponent
+    MytimereportComponent,
+    UserslistComponent,
+    EdituserComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

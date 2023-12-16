@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { TimeRecordService } from 'src/app/services/time/time.service';
 import { timeData } from 'src/app/timedata';
 
@@ -22,9 +23,14 @@ export class MytimereportComponent implements OnInit {
   constructor(
     private router: Router,
     private timeService: TimeRecordService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/line']);
+
+    }
     this.getmytime();
   }
 
@@ -60,7 +66,7 @@ export class MytimereportComponent implements OnInit {
 
       processedData.push(processedItem);
     });
-    console.log(processedData)
+
 
     return processedData;
   }

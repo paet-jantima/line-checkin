@@ -1,24 +1,21 @@
-<p>
-  <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <div class="logo">
-      <span routerLink="" class="text-gray-200 text-4xl justify-start items-center">TheRabbit</span>
-    </div>
-    <span class="example-spacer"></span>
-    <div class="nev-items">
-      <ng-container *ngIf="!isloggedIn" >
-        <span routerLink="/login" class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Login</span>
-        <span routerLink="/register" class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Register</span>
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Menu icon-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="logo">
+    <span routerLink="" class="text-gray-200 text-4xl font-bold">TheRabbit</span>
+  </div>
+  <span class="example-spacer"></span>
+  <div class="nav-items">
+    <ng-container *ngIf="!isloggedIn">
+      <span routerLink="line" class="text-xl text-gray-200 font-semibold mx-3 hover:underline hover:text-indigo-200">Login</span>
+      <span routerLink="register" class="text-xl text-gray-200 font-semibold mx-3 hover:underline hover:text-indigo-200">Register</span>
+    </ng-container>
+    <ng-container *ngIf="isloggedIn">
+      <ng-container *ngFor="let user of users">
+        <span routerLink="" class="text-xl text-gray-200 font-semibold mx-3 hover:underline hover:text-indigo-200">{{ user.firstName }} {{ user.lastName }}</span>
       </ng-container>
-
-        <ng-container *ngIf="isloggedIn" >
-          <span routerLink="" class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Welcome User</span>
-          <span routerLink="/" (click)="logout()" class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Logout</span>
-        </ng-container>
-
-      </div>
-
-  </mat-toolbar>
-</p>
+      <span routerLink="profile" (click)="logout()" class="text-xl text-gray-200 font-semibold mx-3 hover:underline hover:text-indigo-200">Logout</span>
+    </ng-container>
+  </div>
+</mat-toolbar>

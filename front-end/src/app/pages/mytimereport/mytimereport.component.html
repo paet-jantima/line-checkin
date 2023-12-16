@@ -1,4 +1,4 @@
-<!-- mytimereport.component.html -->
+
 <table>
   <thead>
     <tr>
@@ -10,7 +10,11 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of timeData">
-      <td>{{ item.checkinDate }}</td>
+      <td>
+        <!-- ใช้เงื่อนไขเพื่อแสดงวันที่ -->
+        <span *ngIf="item.checkinDate">{{ item.checkinDate }}</span>
+        <span *ngIf="!item.checkinDate && item.checkoutDate">{{ item.checkoutDate }}</span>
+      </td>
       <td>{{ item.checkinTime }}</td>
       <td>{{ item.checkoutTime }}</td>
       <td>{{ item.status }}</td>

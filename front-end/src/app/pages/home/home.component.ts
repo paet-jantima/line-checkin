@@ -29,9 +29,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/login']);
-      return;
+      this.router.navigate(['/line']);
+
     }
+
 
     timer(0,1000).subscribe(()=>{
       this.dateTime = new Date();

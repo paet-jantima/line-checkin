@@ -1,0 +1,26 @@
+
+<div class="table-container">
+  <table class="user-table">
+      <thead>
+        <tr>
+          <th>ชื่อ</th>
+          <th>นามสกุล</th>
+          <th>ตำแหน่ง</th>
+          <th>ขาดงาน</th>
+          <th>มาสาย</th>
+          <!-- และอื่น ๆ ตามความต้องการ -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.jobPosition }}</td>
+          <td>{{ user.absentDays }}</td>
+          <td>{{ user.lateDays }}</td>
+          <!-- และอื่น ๆ ตามความต้องการ -->
+        </tr>
+      </tbody>
+    </table>
+</div>
+

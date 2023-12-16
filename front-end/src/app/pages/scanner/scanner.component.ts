@@ -5,6 +5,7 @@ import { BarcodeFormat, Result } from '@zxing/library';
 import { BehaviorSubject } from 'rxjs';
 import { TimeRecordService } from 'src/app/services/time/time.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-scanner',
@@ -38,12 +39,17 @@ export class ScannerComponent {
   constructor(
     private router: Router,
     private timeService:TimeRecordService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
 
   ) {}
 
 
   ngOnInit() {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/line']);
+      return;
+    }
     this.route.queryParams.subscribe(params => {
       this.checkType = params['type'];
       // ทำอะไรกับค่า checkType ที่ได้รับมา ในที่นี้คือการส่งไปยังหน้า scanner

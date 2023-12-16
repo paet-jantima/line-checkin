@@ -114,15 +114,15 @@ export const recordCheckOut = async (req, res, next) => {
   export const getAllTimeRecords = async (req, res, next) => {
     try {
       const allTimeRecords = await Time.find({});
-      const recordsInThailandTime = allTimeRecords.map(record => {
-        // Convert UTC timestamp to Thailand timezone using Luxon
-        const checkinThailandTime = DateTime.fromJSDate(record.checkin, { zone: 'utc' }).setZone('Asia/Bangkok');
-        const checkoutThailandTime = record.checkout ? DateTime.fromJSDate(record.checkout, { zone: 'utc' }).setZone('Asia/Bangkok') : null;
-  
+      const recordsInThailandTime = myTimeRecords.map(record => {
+        const adjustedCheckin = record.checkin ? new Date(record.checkin).toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }) : '';
+        const adjustedCheckout = record.checkout ? new Date(record.checkout).toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }) : '';
+        
         return {
           userId: record.userId,
-          checkin: checkinThailandTime.toJSDate(),
-          checkout: checkoutThailandTime ? checkoutThailandTime.toJSDate() : null
+          checkin: adjustedCheckin,
+          checkout: adjustedCheckout,
+          status: record.status
         };
       });
   
@@ -150,9 +150,9 @@ export const recordCheckOut = async (req, res, next) => {
   
       // Convert UTC timestamps to Thailand timezone (+07:00)
       const recordsInThailandTime = myTimeRecords.map(record => {
-        const adjustedCheckin = new Date(record.checkin).toLocaleString('en-US', { timeZone: 'Asia/Bangkok' });
-        const adjustedCheckout = record.checkout ? new Date(record.checkout).toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }) : null;
-  
+        const adjustedCheckin = record.checkin ? new Date(record.checkin).toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }) : '';
+        const adjustedCheckout = record.checkout ? new Date(record.checkout).toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }) : '';
+        
         return {
           userId: record.userId,
           checkin: adjustedCheckin,
@@ -160,7 +160,6 @@ export const recordCheckOut = async (req, res, next) => {
           status: record.status
         };
       });
-  
       res.status(200).json(recordsInThailandTime);
     } catch (error) {
       console.error('เกิดข้อผิดพลาดในการดึงข้อมูลของตัวเอง:', error);

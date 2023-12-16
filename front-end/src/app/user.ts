@@ -10,6 +10,8 @@ export interface User {
   phoneNumber?: string;
   address?: string;
   jobPosition?: string;
+  absentDays?: number;
+  lateDays?: number;
 
 }
 

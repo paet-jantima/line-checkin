@@ -21,10 +21,16 @@ export class LineComponent implements OnInit {
   }
 
   initLine(): void {
+
     liff.init({ liffId: '2001900543-EvW7belD' }, () => {
-      this.loginline();
-    });
+      if (liff.isLoggedIn()) {
+        this.loginline();
+      } else {
+        liff.login();
+      }
+    }, err => console.error(err));
   }
+
 
   async loginline() {
     try {
@@ -39,6 +45,7 @@ export class LineComponent implements OnInit {
           localStorage.setItem('user_id', res.data._id);
           this.authService.isloggedIn$.next(true);
           this.router.navigate(['']);
+
         }
       });
     } catch (error) {

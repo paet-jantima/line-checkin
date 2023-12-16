@@ -1,14 +1,14 @@
-<body class="m-5">
-  <span class=" justify-start items-center" >
-    <p>วันที่ {{dateTime| date:'fullDate' }}</p>
-    <p>เวลา {{dateTime| date:'HH:mm:ss' }}</p>
-  </span>
-  <button (click)="checkin()" mat-raised-button color="primary">เข้างาน</button>
-  <button (click)="checkout()" mat-raised-button color="accent">ออกงาน</button>
-  <button (click)="getmytime()"mat-raised-button color="">ประวัติ</button>
+<body >
+  <div class="container">
+    <span class="date-time">
+      <p> {{ dateTime | date:'fullDate' }}</p>
+      <p> {{ dateTime | date:'HH:mm:ss' }}</p>
+    </span>
+    <div class="buttons">
+      <button (click)="checkin()" mat-raised-button color="primary">เข้างาน</button>
+      <button (click)="checkout()" mat-raised-button color="accent">ออกงาน</button>
+      <button (click)="getmytime()" mat-raised-button color="">ประวัติ</button>
+      <button routerLink="userslist" mat-raised-button color="">อันดับ</button>
+    </div>
+  </div>
 </body>
-
-
-
-
-
