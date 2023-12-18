@@ -37,7 +37,9 @@ export class LineComponent implements OnInit {
       const profile = await liff.getProfile();
       const data = {
         userId: profile.userId,
-        firstName: profile.displayName
+        firstName: profile.displayName,
+        profileImage: profile.pictureUrl
+
       };
 
       this.authService.loginLineService(data).subscribe({

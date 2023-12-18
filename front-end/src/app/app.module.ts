@@ -18,6 +18,7 @@ import { MytimereportComponent } from './pages/mytimereport/mytimereport.compone
 import { UserslistComponent } from './pages/userslist/userslist.component';
 import { EdituserComponent } from './pages/edituser/edituser.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 LOAD_WASM().subscribe()
 
@@ -42,7 +43,8 @@ LOAD_WASM().subscribe()
     MaterialModule,
     HttpClientModule,
     NgxScannerQrcodeModule,
-    ZXingScannerModule
+    ZXingScannerModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

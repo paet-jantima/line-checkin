@@ -15,7 +15,7 @@ const UserSchema = mongoose.Schema(
       userId: {
         type: String,
         // required: true
-        default: ""
+        
       },
       email: {
         type: String,
@@ -26,7 +26,7 @@ const UserSchema = mongoose.Schema(
       profileImage: {
         type: String,
         // require: false,
-        default: ""
+        default: "https://png.pngtree.com/png-clipart/20200224/original/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_5247852.jpg"
       },
       isAdmin: {
         type: Boolean,
@@ -57,6 +57,15 @@ const UserSchema = mongoose.Schema(
         type: Number,
         default: 0,
       },
+      nickname: {
+        type: String,
+        default: ''
+      },
+      gender: {
+        type: String,
+        enum: ['male', 'female', 'other'],
+        default: 'other'
+      }
     },
     {
       timestamps: true,

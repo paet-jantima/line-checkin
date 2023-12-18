@@ -12,6 +12,8 @@ export interface User {
   jobPosition?: string;
   absentDays?: number;
   lateDays?: number;
+  nickname?: string;
+  gender?: string;
 
 }
 
