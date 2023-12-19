@@ -9,7 +9,8 @@ import cookieParser from 'cookie-parser';
 import timeRoute from './routes/time.js';
 
 
-import { startCronJob ,startCheck } from'./cronJob/cronJob.js'
+const { startCronJob, startCheck } = require('./cronJob/cronJob.js');
+
 const app = express();
 dotenv.config();
 
