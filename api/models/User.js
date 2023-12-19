@@ -1,76 +1,69 @@
-import mongoose, {Schema} from 'mongoose';
+const mongoose = require('mongoose');
 
-const UserSchema = mongoose.Schema(
-    {
-      firstName: {
-        type: String,
-        // required: true
-        default: ""
-      },
-      lastName: {
-        type: String,
-        // required: true
-        default: ""
-      },
-      userId: {
-        type: String,
-        // required: true
-        
-      },
-      email: {
-        type: String,
-        // require: true,
-        // unique : true
-        default: ""
-      },
-      profileImage: {
-        type: String,
-        // require: false,
-        default: "https://png.pngtree.com/png-clipart/20200224/original/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_5247852.jpg"
-      },
-      isAdmin: {
-        type: Boolean,
-        default: false
-      },
-      roles: {
-        type: [Schema.Types.ObjectId],
-        //require: true,
-        ref: "Role"
-      },
-      phoneNumber: {
-        type: String,
-        default: ""
-      },
-      address: {
-        type: String,
-        default: ""
-      },
-      jobPosition: {
-        type: String,
-        default: ""
-      },
-      absentDays: {
-        type: Number,
-        default: 0,
-      },
-      lateDays: {
-        type: Number,
-        default: 0,
-      },
-      nickname: {
-        type: String,
-        default: ''
-      },
-      gender: {
-        type: String,
-        enum: ['male', 'female', 'other'],
-        default: 'other'
-      }
+const { Schema } = mongoose;
+
+const UserSchema = new Schema(
+  {
+    firstName: {
+      type: String,
+      default: ""
     },
-    {
-      timestamps: true,
+    lastName: {
+      type: String,
+      default: ""
+    },
+    userId: {
+      type: String,
+    },
+    email: {
+      type: String,
+      default: ""
+    },
+    profileImage: {
+      type: String,
+      default: "https://png.pngtree.com/png-clipart/20200224/original/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_5247852.jpg"
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false
+    },
+    roles: {
+      type: [Schema.Types.ObjectId],
+      ref: "Role"
+    },
+    phoneNumber: {
+      type: String,
+      default: ""
+    },
+    address: {
+      type: String,
+      default: ""
+    },
+    jobPosition: {
+      type: String,
+      default: ""
+    },
+    absentDays: {
+      type: Number,
+      default: 0,
+    },
+    lateDays: {
+      type: Number,
+      default: 0,
+    },
+    nickname: {
+      type: String,
+      default: ''
+    },
+    gender: {
+      type: String,
+      enum: ['male', 'female', 'other'],
+      default: 'other'
     }
-  );
-  
+  },
+  {
+    timestamps: true,
+  }
+);
 
-export default mongoose.model("User",UserSchema);
+module.exports = mongoose.model("User", UserSchema);

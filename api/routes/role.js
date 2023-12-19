@@ -1,14 +1,16 @@
-
-import express  from "express";
-import { createRole, deleteRole, getAllRoles, updateRole } from "../controllers/role.controller.js";
-import { verifyAdmin } from "../utils/verifyToken.js";
+const express = require("express");
+const roleController = require("../controllers/role.controller.js");
+const verifyToken = require("../utils/verifyToken.js");
 
 const router = express.Router();
- 
 
-router.post('/create',verifyAdmin, createRole);
-router.put('/update/:id',verifyAdmin, updateRole);
+// Destructure controller functions
+const { createRole, deleteRole, getAllRoles, updateRole } = roleController;
+const { verifyAdmin } = verifyToken;
+
+router.post('/create', verifyAdmin, createRole);
+router.put('/update/:id', verifyAdmin, updateRole);
 router.get('/getAll', getAllRoles);
-router.delete('/deleteRole/:id',deleteRole );
+router.delete('/deleteRole/:id', deleteRole);
 
-export default router;
+module.exports = router;

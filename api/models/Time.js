@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const TimeSchema = new mongoose.Schema({
   userId: {
@@ -6,14 +6,14 @@ const TimeSchema = new mongoose.Schema({
       required: true
   },
   checkin: {
-      type: Date // แก้จาก type: String เป็น type: Date
+      type: Date
   },
   checkout: {
-      type: Date // แก้จาก type: String เป็น type: Date
+      type: Date
   },
   status: {
       type: String
   }
 }, { timestamps: true });
 
-export default mongoose.model("Time", TimeSchema);
+module.exports = mongoose.model("Time", TimeSchema);

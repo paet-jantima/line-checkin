@@ -1,26 +1,24 @@
-import express from "express";
-import { checkUserById, login, loginLine, register, registerAdmin } from "../controllers/auth.controller.js";
+const express = require("express");
+const authController = require("../controllers/auth.controller.js");
 
 const router = express.Router();
 
-//register
+// Destructure controller functions
+const { checkUserById, login, loginLine, register, registerAdmin } = authController;
 
-router.post("/register",register)
+// Register
+router.post("/register", register);
 
-//login
-router.post("/login",login)
+// Login
+router.post("/login", login);
 
-//loginline
-router.post("/loginline",loginLine)
+// Login with Line
+router.post("/loginline", loginLine);
 
-//register as admin
-router.post("/register-admin",registerAdmin);
+// Register as admin
+router.post("/register-admin", registerAdmin);
 
-//send reset email
+// Check user by ID
+router.post("/checkUserById", checkUserById);
 
-
-
-
-router.post("/checkUserById",checkUserById)
-
-export default router;
+module.exports = router;

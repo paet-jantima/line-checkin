@@ -1,10 +1,10 @@
-import moment from 'moment';
-import 'moment-timezone';
-import Time from '../models/Time.js'; 
-import User from '../models/User.js';
-import { DateTime } from 'luxon';
+const moment = require('moment');
+require('moment-timezone');
+const Time = require('../models/Time.js');
+const User = require('../models/User.js');
+const { DateTime } = require('luxon');
 
-export const recordCheckIn = async (req, res, next) => {
+const recordCheckIn = async (req, res, next) =>{
   const { userId } = req.body;
 
   try {
@@ -57,7 +57,7 @@ export const recordCheckIn = async (req, res, next) => {
 
 
 
-export const recordCheckOut = async (req, res, next) => {
+ const recordCheckOut = async (req, res, next) => {
   const { userId } = req.body;
 
   try {
@@ -111,7 +111,7 @@ export const recordCheckOut = async (req, res, next) => {
 };
 
 
-  export const getAllTimeRecords = async (req, res, next) => {
+   const getAllTimeRecords = async (req, res, next) => {
     try {
       const allTimeRecords = await Time.find({});
       const recordsInThailandTime = myTimeRecords.map(record => {
@@ -134,7 +134,7 @@ export const recordCheckOut = async (req, res, next) => {
   };
   
   
-  export const getMyTimeRecords = async (req, res, next) => {
+   const getMyTimeRecords = async (req, res, next) => {
     const userId = req.params.id; // Access userId from req.params
   
     try {
@@ -169,7 +169,7 @@ export const recordCheckOut = async (req, res, next) => {
   
   
 
-  export const editTimeRecord = async (req, res, next) => {
+   const editTimeRecord = async (req, res, next) => {
     const { recordId, checkin, checkout } = req.body; // รับค่า recordId, checkin และ checkout จาก req.body
   
     try {
@@ -198,7 +198,7 @@ export const recordCheckOut = async (req, res, next) => {
     }
   };
   
-  export const checkAndUpdateStatus = async () => {
+ const checkAndUpdateStatus = async () => {
     try {
       const thaiTime = moment().tz('Asia/Bangkok');
       const todayStart = thaiTime.clone().startOf('day');
@@ -239,4 +239,11 @@ export const recordCheckOut = async (req, res, next) => {
     }
   };
   
-  
+  module.exports = {
+    recordCheckIn,
+    recordCheckOut,
+    getAllTimeRecords,
+    getMyTimeRecords,
+    editTimeRecord,
+    checkAndUpdateStatus
+};

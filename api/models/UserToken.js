@@ -1,18 +1,22 @@
-import mongoose, {Schema} from 'mongoose';
+const mongoose = require('mongoose');
 
-const TokenSchema = mongoose.Schema({
-    userId:{
+const { Schema } = mongoose;
+
+const TokenSchema = new Schema({
+    userId: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref:'User'
+        ref: 'User'
     },
-    token:{
-        type:String,
+    token: {
+        type: String,
         required: true,
-    },createAt:{
+    },
+    createAt: {
         type: Date,
-       default:Date.now,
-       expires:300
+        default: Date.now,
+        expires: 300
     }
-})
-export default mongoose.model('Token', TokenSchema);
+});
+
+module.exports = mongoose.model('Token', TokenSchema);

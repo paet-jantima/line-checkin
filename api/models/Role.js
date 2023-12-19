@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const RoleSchema = mongoose.Schema(
     {
@@ -7,9 +7,9 @@ const RoleSchema = mongoose.Schema(
             required: true, 
         },
     },
-        {
-            timestamps: true
-        }
+    {
+        timestamps: true
+    }
 );
 
-export default mongoose.model("Role", RoleSchema);
+module.exports = mongoose.model("Role", RoleSchema);

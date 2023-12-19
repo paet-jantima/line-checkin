@@ -1,19 +1,15 @@
-import express from 'express';
-import {editTimeRecord, getAllTimeRecords, getMyTimeRecords, recordCheckIn, recordCheckOut}from'../controllers/time.controller.js';
+const express = require('express');
+const timeController = require('../controllers/time.controller.js');
 
 const router = express.Router();
 
-router.post('/checkin',recordCheckIn)
+// Destructure controller functions
+const { editTimeRecord, getAllTimeRecords, getMyTimeRecords, recordCheckIn, recordCheckOut } = timeController;
 
-router.post('/checkout',recordCheckOut)
+router.post('/checkin', recordCheckIn);
+router.post('/checkout', recordCheckOut);
+router.get('/getall', getAllTimeRecords);
+router.post('/edit', editTimeRecord);
+router.get('/getmytime/:id', getMyTimeRecords);
 
-router.get('/getall',getAllTimeRecords)
-
-router.post('/edit',editTimeRecord)
-
-router.get('/getmytime/:id',getMyTimeRecords)
-
-
-
-
-export default router;
+module.exports = router;
