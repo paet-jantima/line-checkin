@@ -91,6 +91,7 @@ export const loginLine = async (req, res, next) => {
             phoneNumber: req.body.phoneNumber,
             address: req.body.address,
             jobPosition: req.body.jobPosition,
+            profileImage:req.body.profileImage,
             roles: role,
     
         });
