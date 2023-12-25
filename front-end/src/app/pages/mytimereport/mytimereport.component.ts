@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, PageEvent } from '@angular/material/paginator'; // Import PageEvent
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TimeRecordService } from 'src/app/services/time/time.service';
 import { timeData } from 'src/app/timedata';
-
 
 interface ProcessedTimeData extends timeData {
   checkinDate: string;
@@ -17,8 +19,11 @@ interface ProcessedTimeData extends timeData {
   templateUrl: './mytimereport.component.html',
   styleUrls: ['./mytimereport.component.scss']
 })
-export class MytimereportComponent implements OnInit {
-  timeData: ProcessedTimeData[] = [];
+export class MytimereportComponent implements OnInit, AfterViewInit {
+  @ViewChild(MatSort) sort: MatSort | undefined;
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+  displayedColumns: string[] = ['date', 'checkinTime', 'checkoutTime', 'status'];
+  dataSource: MatTableDataSource<ProcessedTimeData> = new MatTableDataSource<ProcessedTimeData>();
 
   constructor(
     private router: Router,
@@ -26,21 +31,31 @@ export class MytimereportComponent implements OnInit {
     private authService: AuthService,
   ) {}
 
+  ngAfterViewInit() {
+    // Ensure that the paginator is set after the view is initialized
+    if (this.paginator) {
+      this.dataSource.paginator = this.paginator;
+    }
+  }
+
   ngOnInit(): void {
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/line']);
-
     }
-    this.getmytime();
+    this.getMyTime();
   }
 
-  getmytime() {
+  getMyTime() {
     const userId = localStorage.getItem('user_id');
-
     this.timeService.getMytime(userId).subscribe(
       (timeData: timeData[]) => {
-        console.log('User time data:', timeData);
-        this.timeData = this.processDateTimeData(timeData);
+        const processedData = this.processDateTimeData(timeData);
+        this.dataSource = new MatTableDataSource<ProcessedTimeData>(processedData);
+        // Check if paginator exists and set it after data is loaded
+        if (this.paginator) {
+          this.dataSource.paginator = this.paginator;
+        }
+        this.setupSorting();
       },
       (error) => {
         console.error('Error fetching user time:', error);
@@ -53,21 +68,41 @@ export class MytimereportComponent implements OnInit {
     const processedData: ProcessedTimeData[] = [];
 
     data.forEach((item) => {
-      const checkinDateTime = new Date(item.checkin);
-      const checkoutDateTime = new Date(item.checkout);
-
       const processedItem: ProcessedTimeData = {
         ...item,
         checkinDate: item.checkin ? new Date(item.checkin).toLocaleDateString() : '',
-    checkinTime: item.checkin ? new Date(item.checkin).toLocaleTimeString() : '',
-    checkoutDate: item.checkout ? new Date(item.checkout).toLocaleDateString() : '',
-    checkoutTime: item.checkout ? new Date(item.checkout).toLocaleTimeString() : '',
+        checkinTime: item.checkin ? new Date(item.checkin).toLocaleTimeString() : '',
+        checkoutDate: item.checkout ? new Date(item.checkout).toLocaleDateString() : '',
+        checkoutTime: item.checkout ? new Date(item.checkout).toLocaleTimeString() : '',
       };
 
       processedData.push(processedItem);
     });
 
-
     return processedData;
+  }
+
+  setupSorting() {
+    if (this.sort) {
+      this.dataSource.sortingDataAccessor = (item, header) => {
+        switch (header) {
+          case 'date': return item.checkinDate;
+          case 'checkinTime': return item.checkinTime;
+          case 'checkoutTime': return item.checkoutTime;
+          case 'status': return item.status;
+          default: return '';
+        }
+      };
+      this.dataSource.sort = this.sort;
+    }
+  }
+
+  // Function to handle page change event from the paginator
+  onPageChange(event: PageEvent) {
+    this.paginator!.pageIndex = event.pageIndex;
+    this.paginator!.pageSize = event.pageSize;
+    // Call your service function or update your data source here
+    // with the new page index and page size
+    // For example, this.getMyTime();
   }
 }

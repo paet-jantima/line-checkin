@@ -7,8 +7,8 @@ body {
 }
 
 .container {
-  display: grid;
-  place-items: center;
+  display: flex; /* เพิ่มบรรทัดนี้ */
+  flex-direction: column; /* เพิ่มบรรทัดนี้ */
   gap: 20px;
   background-color: #ffffff;
   padding: 20px;
@@ -16,9 +16,12 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+
 .date-time {
   text-align: center;
   color: #333333;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .buttons {
@@ -30,6 +33,7 @@ button {
   padding: 10px 20px;
   border-radius: 6px;
   font-size: 14px;
+  font-weight: bold;
 }
 
 button:hover {

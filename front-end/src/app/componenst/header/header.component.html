@@ -1,18 +1,17 @@
 <mat-toolbar color="primary" class="bg-gray-900">
   <div class="logo">
-    <span routerLink="" class="text-white text-4xl font-bold">TheRabbit</span>
+    <span routerLink="" class="text-white text-4xl font-bold">TheRabbitTech</span>
   </div>
   <span class="example-spacer"></span>
   <div class="nav-items">
     <ng-container *ngIf="!isloggedIn">
       <span routerLink="line" class="text-xl text-white font-semibold mx-3 hover:underline hover:text-indigo-200">Login</span>
-      <span routerLink="register" class="text-xl text-white font-semibold mx-3 hover:underline hover:text-indigo-200">Register</span>
     </ng-container>
     <ng-container *ngIf="isloggedIn">
       <ng-container *ngFor="let user of users">
-        <button mat-stroked-button [matMenuTriggerFor]="menuHero" color="primary" ng-init>
+        <button [matMenuTriggerFor]="menuHero" color="primary" ng-init>
           <span class="text-xl text-white font-semibold mx-3 hover:underline hover:text-indigo-200">
-            <img [src]="user.profileImage" alt="Profile Image" class="rounded-full w-10 h-10 inline-block">
+            <img [src]="user.profileImage" alt="Profile Image" class="rounded-full w-12 h-12 inline-block">
           </span>
         </button>
         <mat-menu #menuHero="matMenu" class="uxg-user-profile">
@@ -21,19 +20,20 @@
               <div class="uxg-avatar" large>
                 <img [src]="user.profileImage" alt="Profile Image" class="rounded-full w-10 h-10 inline-block">
               </div>
-              <h6 class="uxg-h6">{{ user.firstName }} {{ user.lastName }}</h6>
+              <h2 class="uxg-h6">{{ user.firstName }} {{ user.lastName }}</h2>
               <span class="uxg-caption">{{ user.email }}</span>
             </div>
           </div>
           <mat-divider></mat-divider>
           <div class="uxg-menu-footer">
+            <button mat-button color="primary" dense routerLink="profile">
+              Edit Profile
+            </button>
             <button mat-flat-button color="primary" dense (click)="logout()">
               <mat-icon>exit_to_app</mat-icon>
               Logout
             </button>
-            <button mat-button color="primary" dense routerLink="profile">
-              View profile
-            </button>
+
           </div>
         </mat-menu>
       </ng-container>

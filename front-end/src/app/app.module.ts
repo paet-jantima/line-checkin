@@ -20,6 +20,7 @@ import { EdituserComponent } from './pages/edituser/edituser.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 LOAD_WASM().subscribe()
 
 @NgModule({

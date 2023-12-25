@@ -1,17 +1,14 @@
-
-/* mytimereport.component.scss */
-table {
+/* สำหรับทำให้ตารางไม่ใหญ่เกินไป */
+.mat-table {
   width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
+  max-width: 800px; /* ปรับขนาดตารางตามที่ต้องการ */
+  margin: 0 auto; /* จัดตารางไปตรงกลาง */
 }
 
-th, td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ccc;
-}
-
-tr:nth-child(even) {
-  background-color: #f9f9f9;
+/* ทำให้ตารางเป็น responsive design */
+@media (max-width: 600px) {
+  .mat-table {
+    width: 100%;
+    max-width: 100%;
+  }
 }
