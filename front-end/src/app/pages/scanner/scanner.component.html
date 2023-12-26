@@ -1,5 +1,16 @@
-<div class="scanner-container">
-  <zxing-scanner [torch]="torchEnabled" [(device)]="currentDevice" (scanSuccess)="onCodeResult($event)"
-    [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
-    (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
-</div>
+<table>
+  <tr>
+    <td>
+      <div class="scanner-container">
+        <zxing-scanner [torch]="torchEnabled" [(device)]="currentDevice" (scanSuccess)="onCodeResult($event)"
+          [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
+          (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">
+      <button class="custom-button" (click)="goBack()">ย้อนกลับ</button>
+    </td>
+  </tr>
+</table>

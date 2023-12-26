@@ -27,3 +27,22 @@
 }
 
 /* ส่วนอื่น ๆ ของการจัดรูปแบบตาราง */
+.custom-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px; /* ปรับระยะห่างด้านบนของปุ่ม */
+  margin-top: 20px; /* ปรับระยะห่างด้านบนของปุ่ม */
+  margin-bottom: 20px; /* ปรับระยะห่างด้านล่างของปุ่ม */
+  margin-left: 10px; /* ปรับระยะห่างด้านซ้ายของปุ่ม */
+  margin-right: 10px; /* ปรับระยะห่างด้านขวาของปุ่ม */
+}
+
+.custom-button:hover {
+  background-color: #2980b9;
+}

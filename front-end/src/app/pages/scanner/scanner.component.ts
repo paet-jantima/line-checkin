@@ -145,6 +145,10 @@ export class ScannerComponent {
     );
   }
 
+  goBack() {
+    this.router.navigate(['']);
+  }
+
 
 
 

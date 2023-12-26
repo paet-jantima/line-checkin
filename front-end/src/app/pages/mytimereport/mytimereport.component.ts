@@ -105,4 +105,8 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
     // with the new page index and page size
     // For example, this.getMyTime();
   }
+  goBack() {
+    this.router.navigate(['']);
+  }
+
 }

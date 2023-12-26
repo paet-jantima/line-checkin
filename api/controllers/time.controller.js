@@ -167,8 +167,6 @@ const recordCheckIn = async (req, res, next) =>{
     }
   };
   
-  
-
    const editTimeRecord = async (req, res, next) => {
     const { recordId, checkin, checkout } = req.body; // รับค่า recordId, checkin และ checkout จาก req.body
   
