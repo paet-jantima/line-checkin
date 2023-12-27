@@ -38,3 +38,15 @@ zxing-scanner {
 table {
   margin: 0 auto; /* Center the table horizontally */
 }
+
+.back-button {
+
+  top: 20px;
+  left: 20px;
+  z-index: 2; /* เพิ่มค่า z-index เพื่อให้อยู่ด้านบนสุด */
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

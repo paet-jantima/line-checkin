@@ -7,15 +7,14 @@ body {
 }
 
 .container {
-  display: flex; /* เพิ่มบรรทัดนี้ */
-  flex-direction: column; /* เพิ่มบรรทัดนี้ */
+  display: flex;
+  flex-direction: column;
   gap: 20px;
   background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 
 .date-time {
   text-align: center;
@@ -34,10 +33,14 @@ button {
   border-radius: 6px;
   font-size: 14px;
   font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* เพิ่มเงาให้กับปุ่มทุกปุ่ม */
+  transition: background-color 0.3s, transform 0.3s ease-in-out; /* เพิ่ม transition ให้กับปุ่มทุกปุ่ม */
 }
 
 button:hover {
   filter: brightness(95%);
+  background-color: #e0e0e0; /* เปลี่ยนสีพื้นหลังเมื่อ hover ให้กับปุ่มทุกปุ่ม */
+  transform: scale(1.05); /* เพิ่ม animation เมื่อ hover ให้กับปุ่มทุกปุ่ม */
 }
 
 button[mat-raised-button][color="primary"] {
@@ -48,4 +51,59 @@ button[mat-raised-button][color="primary"] {
 button[mat-raised-button][color="accent"] {
   background-color: #f44336;
   color: white;
+}
+
+.demo-inline-calendar-card {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.time {
+  font-size: 3em;
+  font-weight: bold;
+  margin: 0;
+  color: #333333;
+  text-align: center;
+}
+
+.clock {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+  margin: 0 auto;
+}
+.custom-button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.3s ease-in-out;
+  color: white; /* ตั้งสีตัวอักษรเป็นสีขาว */
+}
+
+#green {
+  background-color: #4CAF50;
+}
+
+#red {
+  background-color: #F44336;
+}
+
+#blue {
+  background-color: #2196F3;
+}
+
+#navy {
+  background-color: #FFEB3B;
+}
+
+.custom-button:hover {
+  filter: brightness(95%);
+  transform: scale(1.05);
+  background-color: #e0e0e0;
 }

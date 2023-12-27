@@ -8,6 +8,9 @@ import { UserService } from 'src/app/services/user/user.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TimeRecordService } from 'src/app/services/time/time.service';
 import { timer } from 'rxjs';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCardModule} from '@angular/material/card';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 @Component({
@@ -18,6 +21,7 @@ import { timer } from 'rxjs';
 export class HomeComponent implements OnInit {
   users: User[] = [];
   dateTime: Date = new Date();
+  selected!: Date ;
 
   constructor(
     private userService: UserService,

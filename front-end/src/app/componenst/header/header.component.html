@@ -4,9 +4,6 @@
   </div>
   <span class="example-spacer"></span>
   <div class="nav-items">
-    <ng-container *ngIf="!isloggedIn">
-      <span routerLink="line" class="text-xl text-white font-semibold mx-3 hover:underline hover:text-indigo-200">Login</span>
-    </ng-container>
     <ng-container *ngIf="isloggedIn">
       <ng-container *ngFor="let user of users">
         <button [matMenuTriggerFor]="menuHero" color="primary" ng-init>
@@ -18,7 +15,7 @@
           <div class="uxg-menu-header">
             <div class="uxg-avatar-hero-block">
               <div class="uxg-avatar" large>
-                <img [src]="user.profileImage" alt="Profile Image" class="rounded-full w-10 h-10 inline-block">
+                <img [src]="user.profileImage" alt="Profile Image" class="rounded-full w-16 h-16 inline-block">
               </div>
               <h2 class="uxg-h6">{{ user.firstName }} {{ user.lastName }}</h2>
               <span class="uxg-caption">{{ user.email }}</span>
@@ -26,14 +23,14 @@
           </div>
           <mat-divider></mat-divider>
           <div class="uxg-menu-footer">
-            <button mat-button color="primary" dense routerLink="profile">
+            <button mat-button class="custom-edit-button" dense routerLink="profile">
               Edit Profile
-            </button>
+          </button>
+
             <button mat-flat-button color="primary" dense (click)="logout()">
               <mat-icon>exit_to_app</mat-icon>
               Logout
             </button>
-
           </div>
         </mat-menu>
       </ng-container>

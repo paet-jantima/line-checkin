@@ -20,3 +20,49 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
+.uxg-avatar-hero-block {
+  margin: 10px; /* ปรับระยะห่างรอบ avatar block ให้เหมาะสมกับการแสดงผลบนหน้าจอขนาดเล็ก */
+}
+
+.uxg-avatar img {
+  width: 50px; /* ปรับขนาดของรูปโปรไฟล์ใน header ให้เล็กลงสำหรับหน้าจอขนาดเล็ก */
+  height: 50px;
+}
+
+.uxg-menu-footer {
+  margin-top: 10px; /* ปรับระยะห่างด้านบนของ footer ให้เหมาะสมกับการแสดงผลบนหน้าจอขนาดเล็ก */
+}
+
+/* CSS */
+.custom-edit-button {
+  background-color: #FFC107; /* สีเป็นสีส้ม */
+  color: #ffffff; /* สีข้อความเป็นขาว */
+  margin-bottom: 5px; /* ระยะห่างด้านขวาของปุ่ม */
+}
+
+
+
+
+/* Responsive Design - Media Queries */
+
+/* ปรับขนาดของข้อความเมื่อหน้าจอเล็กลง */
+@media screen and (max-width: 768px) {
+  .text-xl {
+    font-size: 1.5rem; /* ปรับขนาด font ลงเพื่อให้เหมาะสมกับหน้าจอขนาดเล็ก */
+  }
+
+  .text-4xl {
+    font-size: 2rem; /* ลดขนาด font ให้เหมาะสมกับหน้าจอขนาดเล็ก */
+  }
+
+  .rounded-full {
+    width: 3rem; /* ปรับขนาดของรูปโปรไฟล์ให้เล็กลงสำหรับหน้าจอขนาดเล็ก */
+    height: 3rem;
+  }
+
+  .uxg-avatar img {
+    width: 40px; /* ปรับขนาดรูปโปรไฟล์ใน header ให้เล็กลงสำหรับหน้าจอขนาดเล็ก */
+    height: 40px;
+  }
+}

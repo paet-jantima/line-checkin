@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-userslist',
@@ -24,7 +25,8 @@ export class UserslistComponent implements OnInit, AfterViewInit {
     private userService: UserService,
     private authService: AuthService,
     private router: Router,
-    private changeDetectorRef: ChangeDetectorRef // เพิ่ม ChangeDetectorRef ไปยัง constructor
+    private changeDetectorRef: ChangeDetectorRef ,// เพิ่ม ChangeDetectorRef ไปยัง constructor
+    private location: Location
   ) {
 
   }
@@ -77,7 +79,7 @@ export class UserslistComponent implements OnInit, AfterViewInit {
 
 
   goBack() {
-    this.router.navigate(['']);
+    this.location.back();
   }
 
 }

@@ -3,6 +3,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/user';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +16,7 @@ export class ProfileComponent implements OnInit {
   isloggedIn: boolean = false;
   users: User[] = [];
 
-  constructor(private authService: AuthService, private router: Router, private userService: UserService,) { }
+  constructor(private authService: AuthService, private router: Router, private userService: UserService,private location: Location) { }
 
   ngOnInit(): void {
     if (!this.authService.isLoggedIn()) {
@@ -50,6 +52,11 @@ export class ProfileComponent implements OnInit {
       console.error('User ID not found in localStorage');
       // Handle when the user ID is not found in localStorage
     }
+  }
+
+
+  goBack(): void {
+    this.router.navigate(['']);
   }
 
 }

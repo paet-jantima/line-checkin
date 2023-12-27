@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { User } from './../../user';
 import { UserService } from 'src/app/services/user/user.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edituser',
@@ -18,7 +19,8 @@ export class EdituserComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private location: Location
   ) {
     // สร้างฟอร์มโดยใช้ FormBuilder
     this.userForm = this.formBuilder.group({
@@ -85,5 +87,9 @@ export class EdituserComponent implements OnInit {
     } else {
       console.error('User ID not found in localStorage');
     }
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

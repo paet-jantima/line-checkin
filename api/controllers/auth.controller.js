@@ -72,7 +72,6 @@ const loginLine = async (req, res, next) => {
         const user = await User.findOne({ userId: req.body.userId }).populate("roles", "role");
 
         if (!user) {
-
             const newUser = new User({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
@@ -86,10 +85,14 @@ const loginLine = async (req, res, next) => {
             });
             await newUser.save();
         }
+
+        // ทำการบันทึกข้อมูลเสร็จก่อนสร้างโทเคน
         const token = Jwt.sign(
             { id: user.id, isAdmin: user.isAdmin, roles: user.roles },
             process.env.JWT_SECRET
         );
+
+        // ส่งโทเคนกลับไปให้ผู้ใช้หลังจากที่บันทึกข้อมูลเสร็จสิ้น
         res.cookie("access_token", token, { httpOnly: true })
             .status(200)
             .json({

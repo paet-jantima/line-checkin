@@ -1,27 +1,75 @@
+.profile-grid {
+  display: grid;
+  gap: 20px;
+  position: relative;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
 .profile-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   width: auto;
-  margin: 0 auto;
-  text-align: center;
-  border: 1px solid #ccc;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  position: relative; /* เพื่อให้ปุ่มแก้ไขสามารถใช้งาน position:absolute ได้ */
 }
+
+.profile-container img {
+  border-radius: 50%; /* ทำให้รูปเป็นวงกลม */
+  box-shadow: 0 0 0 3px #ccc; /* สีและขนาดขอบของรูป */
+}
+
 
 .profile-details {
   text-align: left;
   margin-top: 20px;
-  
+  font-size: 16px;
+  color: #333;
 }
 
-.profile-details p {
-  margin-bottom: 8px;
+.detail-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.detail-item mat-icon {
+  margin-right: 8px;
+  font-size: 18px;
 }
 
 .edit-button {
-  margin-top: 20px;
+  background-color: #FFC107;
+  color: white;
+  border-radius: 6px;
+  padding: 10px 20px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  display: flex; /* ให้ปุ่มเป็น flex container */
+  justify-content: center; /* จัดเรียงแนวนอนกึ่งกลาง */
+  align-items: center; /* จัดเรียงแนวตั้งกึ่งกลาง */
 }
+
+
+
+.edit-button:hover {
+  background-color: #0d47a1;
+  border-color: #0d47a1;
+  color: white;
+
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1;
+  font-size: 24px; /* เพิ่มขนาดของไอคอน */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

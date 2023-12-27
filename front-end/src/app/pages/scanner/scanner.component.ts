@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { TimeRecordService } from 'src/app/services/time/time.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-scanner',
   templateUrl: './scanner.component.html',
@@ -40,7 +40,8 @@ export class ScannerComponent {
     private router: Router,
     private timeService:TimeRecordService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private location: Location
 
   ) {}
 
@@ -146,7 +147,7 @@ export class ScannerComponent {
   }
 
   goBack() {
-    this.router.navigate(['']);
+    this.location.back();
   }
 
 

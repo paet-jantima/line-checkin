@@ -14,23 +14,25 @@ export class HeaderComponent implements OnInit {
   isloggedIn: boolean = false;
   users: User[] = [];
 
-  constructor(private authService: AuthService, private router: Router, private userService: UserService,) {}
-
+  constructor(private authService: AuthService, private router: Router, private userService: UserService,) { }
   ngOnInit(): void {
     this.authService.isloggedIn$.subscribe(res => {
-      this.isloggedIn = this.authService.isLoggedIn();
+      this.isloggedIn = res;
+      if (res) {
+        this.getUserById();
+      } else {
+        this.users = []; // Clear user data when logged out
+      }
     });
-
-      this.getUserById();
-
   }
 
   logout(): void {
     localStorage.clear();
     this.authService.isloggedIn$.next(false);
-    window.location.reload();
+    this.router.navigate(['line']); // Redirect to login page after logout
   }
 
+  // Function to fetch user data by ID
   getUserById(): void {
     const id = localStorage.getItem('user_id');
 
@@ -51,7 +53,6 @@ export class HeaderComponent implements OnInit {
         }
       );
     } else {
-
       console.error('User ID not found in localStorage');
       // Handle when the user ID is not found in localStorage
     }

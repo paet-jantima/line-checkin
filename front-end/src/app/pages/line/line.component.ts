@@ -50,8 +50,17 @@ export class LineComponent implements OnInit {
 
         }
       });
-    } catch (error) {
+    }  catch (error: any) { // ใช้ 'error: any' เพื่อระบุว่าตัวแปร 'error' เป็นอะไรบางอย่าง
       console.log(error);
+
+      if (error.status === 500) {
+        this.reloadPage();
+      } else {
+        this.router.navigate([""]);
+      }
     }
+  }
+  reloadPage(): void {
+    window.location.reload();
   }
 }

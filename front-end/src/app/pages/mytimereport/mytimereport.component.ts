@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TimeRecordService } from 'src/app/services/time/time.service';
 import { timeData } from 'src/app/timedata';
-
+import { Location } from '@angular/common';
 interface ProcessedTimeData extends timeData {
   checkinDate: string;
   checkinTime: string;
@@ -29,6 +29,7 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
     private router: Router,
     private timeService: TimeRecordService,
     private authService: AuthService,
+    private location: Location
   ) {}
 
   ngAfterViewInit() {
@@ -106,7 +107,7 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
     // For example, this.getMyTime();
   }
   goBack() {
-    this.router.navigate(['']);
+    this.location.back();
   }
 
 }

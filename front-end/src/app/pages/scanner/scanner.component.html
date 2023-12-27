@@ -1,3 +1,7 @@
+
+<button mat-icon-button color="primary" class="back-button" (click)="goBack()">
+  <mat-icon>arrow_back</mat-icon>
+</button>
 <table>
   <tr>
     <td>
@@ -6,11 +10,6 @@
           [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
           (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
       </div>
-    </td>
-  </tr>
-  <tr>
-    <td style="text-align: center;">
-      <button class="custom-button" (click)="goBack()">ย้อนกลับ</button>
     </td>
   </tr>
 </table>
