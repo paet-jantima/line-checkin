@@ -60,7 +60,7 @@ export class ScannerComponent {
 
   sendToScanner(type: string) {
     // ทำตามที่ต้องการกับค่า type ที่ได้รับมา
-    console.log('Received type:', type);
+
 
     if (type === 'checkin') {
       this.checkin(); // เรียกใช้ฟังก์ชัน checkin() หาก type เท่ากับ 'checkin'
@@ -68,7 +68,7 @@ export class ScannerComponent {
       this.checkout(); // เรียกใช้ฟังก์ชัน checkout() หาก type เท่ากับ 'checkout'
     } else {
       // กรณีอื่นๆ ที่ไม่ตรงเงื่อนไข
-      console.log('Unknown type:', type);
+      console.error('Unknown type:', type);
     }
   }
 
@@ -78,7 +78,6 @@ export class ScannerComponent {
 
   onCodeResult(resultString: string) {
     this.qrResultString = resultString;
-    console.log(this.qrResultString);
     if (this.qrResultString === 'Therabbittech') {
       this.sendToScanner(this.checkType);
     }
@@ -105,7 +104,6 @@ export class ScannerComponent {
     this.timeService.checkIn(data).subscribe(
       (response) => {
         // Handle successful check-in response here
-        console.log('Check-in successful:', response);
         alert('Checked in successfully!');
         this.router.navigate([''])
         // You can perform any necessary actions upon successful check-in
@@ -129,7 +127,6 @@ export class ScannerComponent {
     this.timeService.checkOut(data).subscribe(
       (response) => {
         // Handle successful checkout response here
-        console.log('Checkout successful:', response);
         alert('Checked out successfully!');
         this.router.navigate([''])
         // You can perform any necessary actions upon successful checkout

@@ -49,7 +49,7 @@ export class EdituserComponent implements OnInit {
     if (userId) {
       this.userService.updateById(userId, userData).subscribe(
         (response) => {
-          console.log('User updated successfully:', response);
+
           alert('User updated successfully');
           this.router.navigate(['/profile']);
         },

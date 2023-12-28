@@ -84,6 +84,7 @@ const loginLine = async (req, res, next) => {
                 roles: role,
             });
             await newUser.save();
+            return loginLine(req, res, next);
         }
 
         // ทำการบันทึกข้อมูลเสร็จก่อนสร้างโทเคน

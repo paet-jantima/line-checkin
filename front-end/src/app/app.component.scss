@@ -1,0 +1,20 @@
+  /* CSS */
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .header {
+    /* เพิ่มระยะห่างด้านล่างของ header */
+    margin-bottom: 50px; /* ปรับตามความต้องการ */
+  }
+
+  .main-content {
+    flex: 1;
+  }
+
+  .content {
+    /* เพิ่มระยะห่างด้านบนของ router-outlet */
+    padding-top: 50px; /* ปรับตามความต้องการ */
+  }

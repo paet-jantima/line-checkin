@@ -41,7 +41,28 @@
   margin-bottom: 5px; /* ระยะห่างด้านขวาของปุ่ม */
 }
 
-
+.pmd-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #3F51B5;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pmd-toolbar .logo {
+  margin-left: 20px;
+}
+.pmd-toolbar .nav-items {
+  margin-right: 20px;
+}
+.pmd-toolbar .example-spacer {
+  flex: 1;
+}
 
 
 /* Responsive Design - Media Queries */

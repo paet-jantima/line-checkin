@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
           } else {
             this.users = [data.data]; // If not an Array, create an Array and assign data to 'users'
           }
-          console.log('User by ID:', this.users);
+
         },
         (error) => {
           console.error('Error fetching user by ID:', error);
