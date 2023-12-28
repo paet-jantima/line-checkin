@@ -30,7 +30,7 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
     private timeService: TimeRecordService,
     private authService: AuthService,
     private location: Location
-  ) {}
+  ) { }
 
   ngAfterViewInit() {
     // Ensure that the paginator is set after the view is initialized
@@ -52,7 +52,7 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
       (timeData: timeData[]) => {
         const processedData = this.processDateTimeData(timeData);
         this.dataSource = new MatTableDataSource<ProcessedTimeData>(processedData);
-        // Check if paginator exists and set it after data is loaded
+        // Set up the paginator after data is loaded
         if (this.paginator) {
           this.dataSource.paginator = this.paginator;
         }
@@ -68,13 +68,27 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
   private processDateTimeData(data: timeData[]): ProcessedTimeData[] {
     const processedData: ProcessedTimeData[] = [];
 
+    const formatDate = (date: Date): string => {
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = String(date.getFullYear());
+      return `${day}/${month}/${year}`;
+    };
+
+    const formatTime = (date: Date): string => {
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      const seconds = String(date.getSeconds()).padStart(2, '0');
+      return `${hours}:${minutes}:${seconds}`;
+    };
+
     data.forEach((item) => {
       const processedItem: ProcessedTimeData = {
         ...item,
-        checkinDate: item.checkin ? new Date(item.checkin).toLocaleDateString('en-US') : '',
-        checkinTime: item.checkin ? new Date(item.checkin).toLocaleTimeString('en-US') : '',
-        checkoutDate: item.checkout ? new Date(item.checkout).toLocaleDateString('en-US') : '',
-        checkoutTime: item.checkout ? new Date(item.checkout).toLocaleTimeString('en-US') : '',
+        checkinDate: item.checkin ? formatDate(new Date(item.checkin)) : '',
+        checkinTime: item.checkin ? formatTime(new Date(item.checkin)) : '',
+        checkoutDate: item.checkout ? formatDate(new Date(item.checkout)) : '',
+        checkoutTime: item.checkout ? formatTime(new Date(item.checkout)) : '',
       };
 
       processedData.push(processedItem);
@@ -82,7 +96,6 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
 
     return processedData;
   }
-
   setupSorting() {
     if (this.sort) {
       this.dataSource.sortingDataAccessor = (item, header) => {
@@ -102,9 +115,7 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
   onPageChange(event: PageEvent) {
     this.paginator!.pageIndex = event.pageIndex;
     this.paginator!.pageSize = event.pageSize;
-    // Call your service function or update your data source here
-    // with the new page index and page size
-    // For example, this.getMyTime();
+
   }
   goBack() {
     this.location.back();
