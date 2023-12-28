@@ -57,12 +57,12 @@ const recordCheckIn = async (req, res, next) =>{
 
 
 
- const recordCheckOut = async (req, res, next) => {
+const recordCheckOut = async (req, res, next) => {
   const { userId } = req.body;
 
   try {
-    const todayStart = moment().startOf('day');
-    const todayEnd = moment().endOf('day');
+    const todayStart = moment().tz('Asia/Bangkok').startOf('day');
+    const todayEnd = moment().tz('Asia/Bangkok').endOf('day');
 
     const existingUser = await User.findOne({ _id: userId });
 
@@ -73,29 +73,26 @@ const recordCheckIn = async (req, res, next) =>{
     const existingCheckOut = await Time.findOne({
       userId,
       createdAt: { $gte: todayStart, $lte: todayEnd },
-      checkout: { $exists: true } // ตรวจสอบว่ามีการเช็คเอาท์ไปแล้วหรือไม่
+      checkout: { $exists: true }
     });
 
     if (!existingCheckOut) {
       const existingCheckIn = await Time.findOne({
         userId,
         createdAt: { $gte: todayStart, $lte: todayEnd },
-        checkin: { $exists: true } // ตรวจสอบการเช็คอินที่ทำไปแล้วในวันนี้
+        checkin: { $exists: true }
       });
 
       if (!existingCheckIn) {
-        // สร้างข้อมูลการเช็คอินใหม่สำหรับวันนี้
         const newCheckIn = new Time({
           userId: existingUser._id,
           status: 'ไม่ได้เช้คอิน',
-          checkout:moment().format('YYYY-MM-DD HH:mm:ss')
+          checkout: moment().tz('Asia/Bangkok').format('YYYY-MM-DD HH:mm:ss')
         });
         await newCheckIn.save();
-
         console.log('สร้างข้อมูลเช็คอินใหม่สำหรับวันนี้แล้ว');
       } else {
-        // ทำการเช็คเอาท์
-        existingCheckIn.checkout = moment().format('YYYY-MM-DD HH:mm:ss');
+        existingCheckIn.checkout = moment().tz('Asia/Bangkok').format('YYYY-MM-DD HH:mm:ss');
         await existingCheckIn.save();
         console.log('บันทึกเวลาการเช็คเอาท์สำเร็จ');
       }
@@ -111,61 +108,36 @@ const recordCheckIn = async (req, res, next) =>{
 };
 
 
-   const getAllTimeRecords = async (req, res, next) => {
-    try {
-      const allTimeRecords = await Time.find({});
-      const recordsInThailandTime = myTimeRecords.map(record => {
-        const adjustedCheckin = record.checkin ? new Date(record.checkin).toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }) : '';
-        const adjustedCheckout = record.checkout ? new Date(record.checkout).toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }) : '';
-        
-        return {
-          userId: record.userId,
-          checkin: adjustedCheckin,
-          checkout: adjustedCheckout,
-          status: record.status
-        };
-      });
-  
-      res.status(200).json(recordsInThailandTime);
-    } catch (error) {
-      console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
-      res.status(500).json({ error: 'มีข้อผิดพลาดในการดึงข้อมูล' });
+const getAllTimeRecords = async (req, res, next) => {
+  try {
+    const allTimeRecords = await Time.find({});
+    res.status(200).json(allTimeRecords);
+  } catch (error) {
+    console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
+    res.status(500).json({ error: 'มีข้อผิดพลาดในการดึงข้อมูล' });
+  }
+};
+
+const getMyTimeRecords = async (req, res, next) => {
+  const userId = req.params.id; // Access userId from req.params
+
+  try {
+    // Check if the user with the received userId exists in the system
+    const userExists = await User.exists({ _id: userId });
+
+    if (!userExists) {
+      return res.status(404).json({ error: 'ผู้ใช้งานไม่มีอยู่ในระบบ' });
     }
-  };
-  
-  
-   const getMyTimeRecords = async (req, res, next) => {
-    const userId = req.params.id; // Access userId from req.params
-  
-    try {
-      // Check if the user with the received userId exists in the system
-      const userExists = await User.exists({ _id: userId });
-  
-      if (!userExists) {
-        return res.status(404).json({ error: 'ผู้ใช้งานไม่มีอยู่ในระบบ' });
-      }
-  
-      // If the user exists, fetch their time records
-      const myTimeRecords = await Time.find({ userId });
-  
-      // Convert UTC timestamps to Thailand timezone (+07:00)
-      const recordsInThailandTime = myTimeRecords.map(record => {
-        const adjustedCheckin = record.checkin ? new Date(record.checkin).toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }) : '';
-        const adjustedCheckout = record.checkout ? new Date(record.checkout).toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }) : '';
-        
-        return {
-          userId: record.userId,
-          checkin: adjustedCheckin,
-          checkout: adjustedCheckout,
-          status: record.status
-        };
-      });
-      res.status(200).json(recordsInThailandTime);
-    } catch (error) {
-      console.error('เกิดข้อผิดพลาดในการดึงข้อมูลของตัวเอง:', error);
-      res.status(500).json({ error: 'มีข้อผิดพลาดในการดึงข้อมูลของตัวเอง' });
-    }
-  };
+
+    // If the user exists, fetch their time records
+    const myTimeRecords = await Time.find({ userId });
+    res.status(200).json(myTimeRecords);
+  } catch (error) {
+    console.error('เกิดข้อผิดพลาดในการดึงข้อมูลของตัวเอง:', error);
+    res.status(500).json({ error: 'มีข้อผิดพลาดในการดึงข้อมูลของตัวเอง' });
+  }
+};
+
   
    const editTimeRecord = async (req, res, next) => {
     const { recordId, checkin, checkout } = req.body; // รับค่า recordId, checkin และ checkout จาก req.body
