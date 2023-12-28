@@ -71,10 +71,10 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
     data.forEach((item) => {
       const processedItem: ProcessedTimeData = {
         ...item,
-        checkinDate: item.checkin ? new Date(item.checkin).toLocaleDateString(undefined) : '',
-        checkinTime: item.checkin ? new Date(item.checkin).toLocaleTimeString(undefined) : '',
-        checkoutDate: item.checkout ? new Date(item.checkout).toLocaleDateString(undefined) : '',
-        checkoutTime: item.checkout ? new Date(item.checkout).toLocaleTimeString(undefined) : '',
+        checkinDate: item.checkin ? new Date(item.checkin).toLocaleDateString('en-US') : '',
+        checkinTime: item.checkin ? new Date(item.checkin).toLocaleTimeString('en-US') : '',
+        checkoutDate: item.checkout ? new Date(item.checkout).toLocaleDateString('en-US') : '',
+        checkoutTime: item.checkout ? new Date(item.checkout).toLocaleTimeString('en-US') : '',
       };
 
       processedData.push(processedItem);
