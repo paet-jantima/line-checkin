@@ -21,7 +21,7 @@ const UserSchema = new Schema(
     },
     profileImage: {
       type: String,
-      default: "https://png.pngtree.com/png-clipart/20200224/original/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_5247852.jpg"
+      default: "https://static.thenounproject.com/png/630729-200.png"
     },
     isAdmin: {
       type: Boolean,

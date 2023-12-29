@@ -20,7 +20,7 @@
     <!-- Position Column -->
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
-      <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
+      <td mat-cell *matCellDef="let user"> <img [src]="user.profileImage" alt="Profile Image" class="rounded-full w-24 h-24 mb-4"> {{user.firstName}} </td>
     </ng-container>
 
     <!-- Name Column -->

@@ -31,7 +31,8 @@ export class EdituserComponent implements OnInit {
       address: [''],
       jobPosition: [''],
       nickname: [''],
-      gender: ['']
+      gender: [''],
+      profileImage: ['']
     });
   }
 
@@ -77,7 +78,8 @@ export class EdituserComponent implements OnInit {
             address: userData.data.address || '',
             jobPosition: userData.data.jobPosition || '',
             nickname: userData.data.nickname || '',
-            gender: userData.data.gender || ''
+            gender: userData.data.gender || '',
+            profileImage: userData.data.profileImage || ''
           });
         },
         (error) => {
