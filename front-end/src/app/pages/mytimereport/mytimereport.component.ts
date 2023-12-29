@@ -79,7 +79,6 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
         checkoutDate: item.checkout ? new Date(item.checkout).toLocaleDateString() : '',
         checkoutTime: item.checkout ? new Date(item.checkout).toLocaleTimeString() : '',
         createdAtDate: item.createdAt ? new Date(item.createdAt).toLocaleDateString() : '',
-        createdAtTime: item.createdAt ? new Date(item.createdAt).toLocaleTimeString() : '',
       };
 
       processedData.push(processedItem);
