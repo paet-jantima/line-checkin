@@ -68,27 +68,13 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
   private processDateTimeData(data: timeData[]): ProcessedTimeData[] {
     const processedData: ProcessedTimeData[] = [];
 
-    const formatDate = (date: Date): string => {
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const year = String(date.getFullYear());
-      return `${day}/${month}/${year}`;
-    };
-
-    const formatTime = (date: Date): string => {
-      const hours = String(date.getHours()).padStart(2, '0');
-      const minutes = String(date.getMinutes()).padStart(2, '0');
-      const seconds = String(date.getSeconds()).padStart(2, '0');
-      return `${hours}:${minutes}:${seconds}`;
-    };
-
     data.forEach((item) => {
       const processedItem: ProcessedTimeData = {
         ...item,
-        checkinDate: item.checkin ? formatDate(new Date(item.checkin)) : '',
-        checkinTime: item.checkin ? formatTime(new Date(item.checkin)) : '',
-        checkoutDate: item.checkout ? formatDate(new Date(item.checkout)) : '',
-        checkoutTime: item.checkout ? formatTime(new Date(item.checkout)) : '',
+        checkinDate: item.checkin ? new Date(item.checkin).toLocaleDateString() : '',
+        checkinTime: item.checkin ? new Date(item.checkin).toLocaleTimeString() : '',
+        checkoutDate: item.checkout ? new Date(item.checkout).toLocaleDateString() : '',
+        checkoutTime: item.checkout ? new Date(item.checkout).toLocaleTimeString() : '',
       };
 
       processedData.push(processedItem);
