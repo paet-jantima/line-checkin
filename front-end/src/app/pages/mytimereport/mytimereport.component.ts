@@ -1,12 +1,13 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator, PageEvent } from '@angular/material/paginator'; // Import PageEvent
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TimeRecordService } from 'src/app/services/time/time.service';
 import { timeData } from 'src/app/timedata';
 import { Location } from '@angular/common';
+
 interface ProcessedTimeData extends timeData {
   checkinDate: string;
   checkinTime: string;
@@ -35,7 +36,6 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngAfterViewInit() {
-    // Ensure that the paginator is set after the view is initialized
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
@@ -54,7 +54,6 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
       (timeData: timeData[]) => {
         const processedData = this.processDateTimeData(timeData);
         this.dataSource = new MatTableDataSource<ProcessedTimeData>(processedData);
-        // Set up the paginator after data is loaded
         if (this.paginator) {
           this.dataSource.paginator = this.paginator;
         }
@@ -84,8 +83,16 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
       processedData.push(processedItem);
     });
 
+    // Sort processedData by createdAtDate ascending
+    processedData.sort((a, b) => {
+      const dateA = new Date(a.createdAtDate).getTime();
+      const dateB = new Date(b.createdAtDate).getTime();
+      return dateA - dateB;
+    });
+
     return processedData;
   }
+
   setupSorting() {
     if (this.sort) {
       this.dataSource.sortingDataAccessor = (item, header) => {
@@ -101,14 +108,12 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // Function to handle page change event from the paginator
   onPageChange(event: PageEvent) {
     this.paginator!.pageIndex = event.pageIndex;
     this.paginator!.pageSize = event.pageSize;
-
   }
+
   goBack() {
     this.location.back();
   }
-
 }
