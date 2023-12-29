@@ -146,8 +146,8 @@ export class ScannerComponent {
   }
 
   goBack() {
-    this.scanner.reset();
-    this.location.back();
+
+    this.router.navigate([''])
   }
 
 
