@@ -12,8 +12,7 @@
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
     <td mat-cell *matCellDef="let item">
-      <span *ngIf="item.checkinDate">{{ item.checkinDate }}</span>
-      <span *ngIf="!item.checkinDate && item.checkoutDate">{{ item.checkoutDate }}</span>
+      <span >{{ item.createdAtDate }}</span>
     </td>
   </ng-container>
   <ng-container matColumnDef="checkinTime">

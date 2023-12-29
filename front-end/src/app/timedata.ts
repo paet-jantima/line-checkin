@@ -8,4 +8,7 @@ export interface timeData {
   checkin: string;
   checkout: string;
   status: string;
+  createdAt: string;
+  createdAtDate: string;
+  createdAtTime: string;
 }

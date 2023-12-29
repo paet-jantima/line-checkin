@@ -12,6 +12,8 @@ interface ProcessedTimeData extends timeData {
   checkinTime: string;
   checkoutDate: string;
   checkoutTime: string;
+  createdAtDate: string;
+  createdAtTime: string;
 }
 
 @Component({
@@ -76,6 +78,8 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
         checkinTime: item.checkin ? new Date(item.checkin).toLocaleTimeString() : '',
         checkoutDate: item.checkout ? new Date(item.checkout).toLocaleDateString() : '',
         checkoutTime: item.checkout ? new Date(item.checkout).toLocaleTimeString() : '',
+        createdAtDate: item.createdAt ? new Date(item.createdAt).toLocaleDateString() : '',
+        createdAtTime: item.createdAt ? new Date(item.createdAt).toLocaleTimeString() : '',
       };
 
       processedData.push(processedItem);
