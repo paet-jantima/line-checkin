@@ -20,7 +20,8 @@ interface ProcessedTimeData extends timeData {
 @Component({
   selector: 'app-mytimereport',
   templateUrl: './mytimereport.component.html',
-  styleUrls: ['./mytimereport.component.scss']
+  styleUrls: ['./mytimereport.component.scss'],
+  providers: [DatePipe, Location]
 })
 export class MytimereportComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort | undefined;
@@ -82,14 +83,7 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
       };
 
       processedData.push(processedItem);
-    });
-
-    // Sort processedData by createdAtDate ascending
-    processedData.sort((a, b) => {
-      const dateA = new Date(a.createdAtDate).getTime();
-      const dateB = new Date(b.createdAtDate).getTime();
-      return dateA - dateB;
-    });
+    })
 
     return processedData;
   }
