@@ -15,7 +15,7 @@ const startCronJob = () => {
 };
 
 const startCheck = () => {
-    cron.schedule('0 0 0 * * *', async () => {
+    cron.schedule('*/5 * * * *', async () => {
         try {
             checkAndUpdateStatus();
         } catch (error) {
