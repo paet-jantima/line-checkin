@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TimeRecordService } from 'src/app/services/time/time.service';
 import { timeData } from 'src/app/timedata';
-import { DatePipe, Location } from '@angular/common';
+import { Location } from '@angular/common';
 
 interface ProcessedTimeData extends timeData {
   checkinDate: string;
@@ -21,7 +21,7 @@ interface ProcessedTimeData extends timeData {
   selector: 'app-mytimereport',
   templateUrl: './mytimereport.component.html',
   styleUrls: ['./mytimereport.component.scss'],
-  providers: [DatePipe, Location]
+  providers: [ Location]
 })
 export class MytimereportComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort | undefined;
@@ -34,7 +34,6 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
     private timeService: TimeRecordService,
     private authService: AuthService,
     private location: Location,
-    private datePipe: DatePipe
   ) { }
 
   ngAfterViewInit() {
@@ -91,7 +90,7 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
     if (this.sort) {
       this.dataSource.sortingDataAccessor = (item, header) => {
         switch (header) {
-          case 'date': return item.checkinDate;
+          case 'date': return item.createdAtDate;
           case 'checkinTime': return item.checkinTime;
           case 'checkoutTime': return item.checkoutTime;
           case 'status': return item.status;
