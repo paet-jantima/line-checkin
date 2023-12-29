@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner/public_api';
 import { BarcodeFormat, Result } from '@zxing/library';
@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
   templateUrl: './scanner.component.html',
   styleUrls: ['./scanner.component.scss']
 })
-export class ScannerComponent {
+export class ScannerComponent  implements OnDestroy {
 
   @ViewChild('scanner')
   scanner!: ZXingScannerComponent;
@@ -44,6 +44,11 @@ export class ScannerComponent {
     private location: Location
 
   ) {}
+
+  ngOnDestroy(): void {
+    this.scanner.reset();
+  }
+
 
 
   ngOnInit() {
