@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TimeRecordService } from 'src/app/services/time/time.service';
 import { timeData } from 'src/app/timedata';
-import { Location } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 
 interface ProcessedTimeData extends timeData {
   checkinDate: string;
@@ -32,7 +32,8 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
     private router: Router,
     private timeService: TimeRecordService,
     private authService: AuthService,
-    private location: Location
+    private location: Location,
+    private datePipe: DatePipe
   ) { }
 
   ngAfterViewInit() {
