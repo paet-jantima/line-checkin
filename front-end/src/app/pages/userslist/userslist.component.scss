@@ -45,13 +45,3 @@
   font-weight: bold; /* ตั้งค่าตัวหนา */
   margin-right: 10px; /* ระยะห่างของข้อความกับปุ่มย้อนกลับ */
 }
-.centered-cell {
-  text-align: center; /* จัดให้อยู่กึ่งกลางในแนวนอน */
-}
-
-/* จัดให้รูปโปรไฟล์และชื่ออยู่กึ่งกลางในแนวตั้งและนอน */
-.flex.items-center.justify-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
