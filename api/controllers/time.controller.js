@@ -15,7 +15,7 @@ const recordCheckIn = async (req, res, next) =>{
 
       const status = checkInTime > lateThreshold ? 'มาสาย' : 'ปกติ';
 
-      const formattedTime = thaiTime.format('YYYY-MM-DD HH:mm:ss');
+      const formattedTime = moment().format('YYYY-MM-DD HH:mm:ss')
 
       const todayStart = thaiTime.clone().startOf('day');
       const todayEnd = thaiTime.clone().endOf('day');
