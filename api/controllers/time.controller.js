@@ -28,7 +28,8 @@ const recordCheckIn = async (req, res, next) =>{
 
       const existingCheckIn = await Time.findOne({
           userId,
-          checkin: { $gte: todayStart, $lte: todayEnd }
+          createdAt: { $gte: todayStart, $lte: todayEnd },
+          checkin:  { $exists: true }
       });
 
       if (existingCheckIn && existingCheckIn.checkout) {
