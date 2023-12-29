@@ -9,6 +9,12 @@ const recordCheckIn = async (req, res, next) =>{
 
   try {
       const thaiTime = moment().tz('Asia/Bangkok');
+      
+      const checkInTime = thaiTime.hours() * 60 + thaiTime.minutes();
+      const lateThreshold = 9 * 60 + 20;
+
+      const status = checkInTime > lateThreshold ? 'มาสาย' : 'ปกติ';
+
       const formattedTime = thaiTime.format('YYYY-MM-DD HH:mm:ss');
 
       const todayStart = thaiTime.clone().startOf('day');
@@ -33,16 +39,10 @@ const recordCheckIn = async (req, res, next) =>{
           return res.status(400).json({ error: 'คุณได้ทำการเช็คอินไปแล้วในวันนี้' });
       }
 
-      const checkInTime = thaiTime.hours() * 60 + thaiTime.minutes();
-      const lateThreshold = 9 * 60 + 20;
-
-      const status = checkInTime > lateThreshold ? 'มาสาย' : 'ปกติ';
-
       const currentTime = new Time({ userId: existingUser._id, checkin: formattedTime, status });
       await currentTime.save();
 
       if (status === 'มาสาย') {
-          // เพิ่มจำนวนวันที่มาสาย (lateDays) ในข้อมูลผู้ใช้งาน
           existingUser.lateDays = (existingUser.lateDays || 0) + 1;
           await existingUser.save();
       }
@@ -57,53 +57,54 @@ const recordCheckIn = async (req, res, next) =>{
 
 
 
+
 const recordCheckOut = async (req, res, next) => {
   const { userId } = req.body;
 
   try {
-    const todayStart = moment().tz('Asia/Bangkok').startOf('day');
-    const todayEnd = moment().tz('Asia/Bangkok').endOf('day');
+      const todayStart = moment().startOf('day');
+      const todayEnd = moment().endOf('day');
 
-    const existingUser = await User.findOne({ _id: userId });
+      const existingUser = await User.findOne({ _id: userId });
 
-    if (!existingUser) {
-      return res.status(400).json({ error: 'ไม่พบผู้ใช้งานในระบบ' });
-    }
-
-    const existingCheckOut = await Time.findOne({
-      userId,
-      createdAt: { $gte: todayStart, $lte: todayEnd },
-      checkout: { $exists: true }
-    });
-
-    if (!existingCheckOut) {
-      const existingCheckIn = await Time.findOne({
-        userId,
-        createdAt: { $gte: todayStart, $lte: todayEnd },
-        checkin: { $exists: true }
-      });
-
-      if (!existingCheckIn) {
-        const newCheckIn = new Time({
-          userId: existingUser._id,
-          status: 'ไม่ได้เช้คอิน',
-          checkout: moment().tz('Asia/Bangkok').format('YYYY-MM-DD HH:mm:ss')
-        });
-        await newCheckIn.save();
-        console.log('สร้างข้อมูลเช็คอินใหม่สำหรับวันนี้แล้ว');
-      } else {
-        existingCheckIn.checkout = moment().tz('Asia/Bangkok').format('YYYY-MM-DD HH:mm:ss');
-        await existingCheckIn.save();
-        console.log('บันทึกเวลาการเช็คเอาท์สำเร็จ');
+      if (!existingUser) {
+          return res.status(400).json({ error: 'ไม่พบผู้ใช้งานในระบบ' });
       }
 
-      return res.status(200).json({ message: 'บันทึกเวลาการเช็คเอาท์สำเร็จ' });
-    } else {
-      return res.status(400).json({ error: 'คุณได้ทำการเช็คเอาท์ไปแล้วในวันนี้' });
-    }
+      const existingCheckOut = await Time.findOne({
+          userId,
+          createdAt: { $gte: todayStart, $lte: todayEnd },
+          checkout: { $exists: true }
+      });
+
+      if (!existingCheckOut) {
+          const existingCheckIn = await Time.findOne({
+              userId,
+              createdAt: { $gte: todayStart, $lte: todayEnd },
+              checkin: { $exists: true }
+          });
+
+          if (!existingCheckIn) {
+              const newCheckIn = new Time({
+                  userId: existingUser._id,
+                  status: 'ไม่ได้เช็คอิน',
+                  checkout: moment().format('YYYY-MM-DD HH:mm:ss')
+              });
+              await newCheckIn.save();
+              console.log('สร้างข้อมูลเช็คอินใหม่สำหรับวันนี้แล้ว');
+          } else {
+              existingCheckIn.checkout = moment().format('YYYY-MM-DD HH:mm:ss');
+              await existingCheckIn.save();
+              console.log('บันทึกเวลาการเช็คเอาท์สำเร็จ');
+          }
+
+          return res.status(200).json({ message: 'บันทึกเวลาการเช็คเอาท์สำเร็จ' });
+      } else {
+          return res.status(400).json({ error: 'คุณได้ทำการเช็คเอาท์ไปแล้วในวันนี้' });
+      }
   } catch (error) {
-    console.error('เกิดข้อผิดพลาดในการบันทึกเวลา:', error);
-    return res.status(500).json({ error: 'มีข้อผิดพลาดในการบันทึกเวลา' });
+      console.error('เกิดข้อผิดพลาดในการบันทึกเวลา:', error);
+      return res.status(500).json({ error: 'มีข้อผิดพลาดในการบันทึกเวลา' });
   }
 };
 
