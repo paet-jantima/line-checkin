@@ -54,7 +54,6 @@ export class MytimereportComponent implements OnInit, AfterViewInit {
       (timeData: timeData[]) => {
         const processedData = this.processDateTimeData(timeData);
         this.dataSource = new MatTableDataSource<ProcessedTimeData>(processedData);
-        console.log(processedData);
         // Set up the paginator after data is loaded
         if (this.paginator) {
           this.dataSource.paginator = this.paginator;
