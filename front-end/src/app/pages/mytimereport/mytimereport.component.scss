@@ -11,6 +11,10 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 20px; /* ปรับขอบล่างของหัวข้อ */
+}
+.header-title h1 {
+  font-size: 24px;
+  color: #333; /* สีข้อความของหัวข้อ */
   font-weight: bold;
 }
 
