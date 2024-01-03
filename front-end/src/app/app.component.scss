@@ -21,27 +21,22 @@
   }
 }
 
+.container {
+  width: 100%;
+  height: 100vh; /* เพิ่มสีพื้นหลังตามต้องการ */
+}
+
   .header {
     /* เพิ่มระยะห่างด้านล่างของ header */
     margin-bottom: 50px; /* ปรับตามความต้องการ */
   }
-
-  // .main-content {
-  //   flex: auto;
-  //   flex-wrap: wrap;
-  //   justify-content: space-between;
-  // } ก่อนหน้านี้ ไว้แก้ไขmain content
 
   .main-content {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
   }
-  // @media screen and (max-width: 600px) {
-  //   .main-content {
-  //     width: 90%;
-  //   }
-  // } if it not work go back
+
 
   .content {
     /* เพิ่มระยะห่างด้านบนของ router-outlet */
