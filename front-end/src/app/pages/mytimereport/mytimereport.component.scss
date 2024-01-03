@@ -52,3 +52,41 @@
   font-weight: bold;
 
 }
+
+/* เริ่มเพิ่มใหม่จากตรงนี้ถ้าไม่work ให้ลบให้หมด */
+.table-container {
+  overflow-x: auto; /* เพิ่มการสลับในแนวนอน */
+  margin: 20px;
+  padding: 20px;
+}
+
+/* Header Title Styles */
+.header-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Responsive Styles for Small Screens */
+@media screen and (max-width: 600px) {
+  .table-container {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  th, td {
+    padding: 8px;
+    font-size: 12px;
+  }
+}
