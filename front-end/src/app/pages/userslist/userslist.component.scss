@@ -16,7 +16,7 @@
   background-color: #f9f9f9;
 }
 .table-container {
-  display: flex;
+  display: grid;
   place-items: center;
 }
 
@@ -44,4 +44,15 @@
   color: #333; /* สีข้อความของหัวข้อ */
   font-weight: bold; /* ตั้งค่าตัวหนา */
   margin-right: 10px; /* ระยะห่างของข้อความกับปุ่มย้อนกลับ */
+}
+.mat-mdc-paginator {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: var(--mat-paginator-container-text-color);
+  background-color: var(--mat-paginator-container-background-color);
+  font-family: var(--mat-paginator-container-text-font);
+  line-height: var(--mat-paginator-container-text-line-height);
+  font-size: var(--mat-paginator-container-text-size);
+  font-weight: var(--mat-paginator-container-text-weight);
+  letter-spacing: var(--mat-paginator-container-text-tracking);
 }
