@@ -11,10 +11,9 @@
     border-radius: 8px;
     box-shadow: 0 4px 6px #0000001a;
     width: 100%;
-  max-width: 1200px; /* Adjust as needed */
-  margin: 0 auto;
-  padding: 20px;
-  align-items: center;
+    max-width: 1; /* Adjust as needed */
+    margin: 0 auto;
+    align-items: center;
 }
 @media screen and (max-width: 600px) {
   .container {
