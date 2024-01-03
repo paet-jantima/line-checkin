@@ -1,67 +1,13 @@
-/* สำหรับทำให้ตารางไม่ใหญ่เกินไป */
-.mat-table {
-  width: 100%;
-  max-width: 800px; /* ปรับขนาดตารางตามที่ต้องการ */
-  margin: 0 auto; /* จัดตารางไปตรงกลาง */
-}
-
-/* ทำให้ตารางเป็น responsive design */
-@media (max-width: 600px) {
-  .mat-table {
-    width: 100%;
-    max-width: 100%;
-  }
-}
-.custom-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  background-color: #3498db;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 20px; /* ปรับระยะห่างด้านบนของปุ่ม */
-  margin-top: 20px; /* ปรับระยะห่างด้านบนของปุ่ม */
-  margin-bottom: 20px; /* ปรับระยะห่างด้านล่างของปุ่ม */
-  margin-left: 10px; /* ปรับระยะห่างด้านซ้ายของปุ่ม */
-  margin-right: 10px; /* ปรับระยะห่างด้านขวาของปุ่ม */
-}
-
-.custom-button:hover {
-  background-color: #2980b9;
-}
-.back-button {
-  z-index: 1;
-  font-size: 24px; /* เพิ่มขนาดของไอคอน */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.header-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px; /* ปรับขอบล่างของหัวข้อ */
-}
-
-.header-title h1 {
-  font-size: 24px;
-  color: #333; /* สีข้อความของหัวข้อ */
-  font-weight: bold;
-
-}
-
-/* เริ่มเพิ่มใหม่จากตรงนี้ถ้าไม่work ให้ลบให้หมด */
-.table-container {
+/* Container Styles */
+.mat-elevation-z8 {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow-x: auto; /* เพิ่มการสลับในแนวนอน */
   margin: 20px;
   padding: 20px;
 }
 
-/* Header Title Styles */
-.header-title {
+/* Table Header Styles */
+.table-header {
   text-align: center;
   margin-bottom: 20px;
 }
@@ -80,13 +26,27 @@ th, td {
 
 /* Responsive Styles for Small Screens */
 @media screen and (max-width: 600px) {
-  .table-container {
+  .mat-elevation-z8 {
     margin: 10px;
     padding: 10px;
   }
 
   th, td {
     padding: 8px;
-    font-size: 12px;
+    font-size: 18px;
   }
+  
+  .flex {
+    flex-direction: column;
+    align-items: center;
+    
+    img {
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.container {
+  width: 100vh;
+  height: 80vh;
 }
