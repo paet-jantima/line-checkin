@@ -10,6 +10,16 @@
     padding: 0px;
     border-radius: 8px;
     box-shadow: 0 4px 6px #0000001a;
+    width: 100%;
+  max-width: 1200px; /* Adjust as needed */
+  margin: 0 auto;
+  padding: 20px;
+  align-items: center;
+}
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
 }
 
   .header {
@@ -28,11 +38,11 @@
     max-width: 800px;
     margin: 0 auto;
   }
-  @media screen and (max-width: 600px) {
-    .main-content {
-      width: 90%;
-    }
-  }
+  // @media screen and (max-width: 600px) {
+  //   .main-content {
+  //     width: 90%;
+  //   }
+  // } if it not work go back
 
   .content {
     /* เพิ่มระยะห่างด้านบนของ router-outlet */
