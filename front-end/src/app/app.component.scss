@@ -11,7 +11,10 @@
   }
 
   .main-content {
-    flex: 1;
+    flex: auto;
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   }
 
   .content {
