@@ -10,10 +10,21 @@
     margin-bottom: 50px; /* ปรับตามความต้องการ */
   }
 
+  // .main-content {
+  //   flex: auto;
+  //   flex-wrap: wrap;
+  //   justify-content: space-between;
+  // } ก่อนหน้านี้ ไว้แก้ไขmain content
+
   .main-content {
-    flex: auto;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 600px) {
+    .main-content {
+      width: 90%;
+    }
   }
 
   .content {
