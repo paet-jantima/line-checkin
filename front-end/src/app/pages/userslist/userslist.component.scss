@@ -1,58 +1,47 @@
-
-
-.user-table th,
-.user-table td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: center; /* จัดให้อยู่ตรงกลาง */
+/* Container Styles */
+.mat-elevation-z8 {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* เพิ่มการสลับในแนวนอน */
+  margin: 20px;
+  padding: 20px;
 }
 
-.user-table th {
-  background-color: #f2f2f2;
-  color: #333;
-}
-
-.user-table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-.table-container {
-  display: grid;
-  place-items: center;
-}
-
-.user-table {
-  width: 80%;
-  border-collapse: collapse;
+/* Table Header Styles */
+.table-header {
+  text-align: center;
   margin-bottom: 20px;
 }
-.back-button {
-  z-index: 1;
-  font-size: 24px; /* เพิ่มขนาดของไอคอน */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.table-header {
-  display: flex;
-  justify-content: center; /* จัดให้หัวข้ออยู่กึ่งกลาง */
-  align-items: center;
-  margin-bottom: 20px; /* ปรับขอบล่างของหัวข้อ */
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.table-header h2 {
-  font-size: 28px;
-  color: #333; /* สีข้อความของหัวข้อ */
-  font-weight: bold; /* ตั้งค่าตัวหนา */
-  margin-right: 10px; /* ระยะห่างของข้อความกับปุ่มย้อนกลับ */
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
-.mat-mdc-paginator {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  color: var(--mat-paginator-container-text-color);
-  background-color: var(--mat-paginator-container-background-color);
-  font-family: var(--mat-paginator-container-text-font);
-  line-height: var(--mat-paginator-container-text-line-height);
-  font-size: var(--mat-paginator-container-text-size);
-  font-weight: var(--mat-paginator-container-text-weight);
-  letter-spacing: var(--mat-paginator-container-text-tracking);
+
+/* Responsive Styles for Small Screens */
+@media screen and (max-width: 600px) {
+  .mat-elevation-z8 {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  th, td {
+    padding: 8px;
+    font-size: 12px;
+  }
+  
+  .flex {
+    flex-direction: column;
+    align-items: center;
+    
+    img {
+      margin-bottom: 8px;
+    }
+  }
 }
