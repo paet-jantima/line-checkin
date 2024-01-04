@@ -9,7 +9,9 @@
         <zxing-scanner [torch]="torchEnabled" [(device)]="currentDevice" (scanSuccess)="onCodeResult($event)"
           [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
           (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
-        <div class="scan-text">SCAN QR</div>
+          <div class="scan-text">
+            Scan QR Code
+          </div>
       </div>
     </td>
   </tr>

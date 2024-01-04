@@ -1,61 +1,71 @@
-/* ปรับขนาดของ scanner-container ตามที่ต้องการ */
-.scanner-container {
-  position: relative;
-  width: 100%;
-  height: 80vh;
-  margin: 20px auto; /* ใช้ shorthand property ลดโค้ด */
-  border-radius: 8px;
-  background-color: #3F51B5;
-  align-items: center;
-  justify-content: center;
+/* styles.scss */
+
+// กําหนดตัวแปรสําหรับสี เพื่อใช้ซ้ํา
+$primary: #3F51B5; 
+$secondary: #fff;
+
+// กําหนด mixins เพื่อใช้ซ้ํา
+@mixin flex-center {
   display: flex;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center; 
 }
 
-/* ปรับขนาดของ zxing-scanner ภายใน scanner-container */
-zxing-scanner {
-  width: 100%;
-  height: 300px;
-  display: block;
-  border-radius: 8px;
-}
-
-/* ปรับขนาดและตำแหน่งของ custom-button */
-.custom-button {
-  position: absolute;
-  top: auto;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  background-color: #3498db;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-/* ปรับขนาดและตำแหน่งของ back-button */
-.back-button {
-  top: 20px;
-  left: 20px;
-  z-index: 2;
+// กําหนด common styles
+.mat-icon {
+  color: $secondary; 
   font-size: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-/* ปรับขนาดและตำแหน่งของ scan-text */
+button {
+  padding: 10px 20px;
+  background-color: $primary;
+  color: $secondary;
+  border: none;
+  cursor: pointer;
+  transition: .3s;
+  
+  &:hover {
+    background-color: lighten($primary, 10%);
+  }
+}
+
+// Scanner
+.scanner-container {
+  @include flex-center;
+  flex-direction: column; 
+  width: 100%;
+  height: 80vh;  
+  margin: 20px auto;
+  border-radius: 8px;
+  background-color: $primary; 
+  box-shadow: 0 4px 8px rgba(0,0,0,.1);
+  
+  zxing-scanner {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+  }
+}
+
 .scan-text {
-  position: absolute;
+  position: absolute; 
   bottom: 20px;
-  left: 50%;
+  left: 50%; 
   transform: translateX(-50%);
   font-size: 24px;
   font-weight: bold;
-  color: #ffffff;
-  align-items: center;
-  justify-content: center;
+  color: $secondary; 
+}
+
+// Back button
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px; 
+  z-index: 2;
+  
+  .mat-icon {
+    font-size: 32px;
+  }
 }
