@@ -1,7 +1,6 @@
 /* styles.scss */
 
 // กําหนดตัวแปรสําหรับสี เพื่อใช้ซ้ํา
-$primary: #3F51B5; 
 $secondary: #fff;
 
 // กําหนด mixins เพื่อใช้ซ้ํา
@@ -35,6 +34,7 @@ button {
   @include flex-center; 
   flex-direction: column;
   position: relative;
+  background-color: #3F51B5;
 }
 
 .zxing-scanner {
@@ -44,6 +44,7 @@ button {
   transform: translate(-50%, -50%);
   width: 80%;
   height: 80%;
+  border-radius: 8px;
 }
 
 .scan-text {
