@@ -1,6 +1,7 @@
 
 /* ปรับขนาดของ scanner-container ตามที่ต้องการ */
 .scanner-container {
+  bottom: 35px;
   position: relative;
   border-radius: 12px;
   background-color: #3F51B5;
@@ -11,6 +12,12 @@
   height: 100%;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  zxing-scanner {
+    width: 80%;
+    max-width: 500px; 
+    display: block;
+  }
 }
 /* ปรับขนาดของ zxing-scanner ภายใน scanner-container */
 zxing-scanner {
