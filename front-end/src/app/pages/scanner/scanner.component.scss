@@ -34,6 +34,7 @@ button {
   @include flex-center; 
   flex-direction: column;
   position: relative;
+  width: 50vh;
   background-color: #3F51B5;
 }
 
