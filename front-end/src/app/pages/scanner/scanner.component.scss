@@ -58,7 +58,8 @@ table {
   justify-content: center;
   display: flex;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: 40vh; /* ทำให้เต็มหน้าจอ */
+  width: 100%; /* กำหนดความกว้างเต็มขอบ */
+  height: 325px; /* กำหนดความสูงตามที่ต้องการ */
 }
 
 .scan-text {
