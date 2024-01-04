@@ -62,15 +62,14 @@ table {
 }
 
 
-/* Adjust the scan-text positioning */
 .scan-text {
   position: absolute;
-  top: 0; /* ตั้งค่า top เป็น 0 เพื่อให้ .scan-text อยู่ด้านบนของ .scanner-container */
-  transform: translate(-50%, 0); /* ใช้ translate เพื่อคงความแน่นอนที่ตำแหน่งแนวนอน */
+  top: 0%; /* Set bottom to 50% */
+  transform: translate(-50%, 50%); /* Use translate to center vertically and horizontally */
   left: 50%;
   font-size: 24px;
   font-weight: bold;
-  color: #000000;
+  color: #3498db;
 }
 
 
