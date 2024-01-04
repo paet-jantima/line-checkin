@@ -13,12 +13,15 @@
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+  zxing-scanner::part(video-container) {
+    border-radius: 12px;
+  }
+
   zxing-scanner {
     width: 100%;
     height: 100%;
     max-width: 500px; 
     display: block;
-    border-radius: 12px;
   }
 }
 // /* ปรับขนาดของ zxing-scanner ภายใน scanner-container */
@@ -65,12 +68,11 @@ table {
 
 .scan-text {
   position: absolute;
-  top: 50%; /* Set bottom to 50% */
-  transform: translate(-50%, 50%); /* Use translate to center vertically and horizontally */
+  top: 10px; /* ตำแหน่งที่ไม่ทับกับส่วนอื่น ๆ ของ .scanner-container */
+  transform: translate(-50%, 0); /* ใช้ translate เพื่อคงความแน่นอนที่ตำแหน่งแนวนอน */
   left: 50%;
   font-size: 24px;
   font-weight: bold;
   color: #3498db;
 }
-
 
