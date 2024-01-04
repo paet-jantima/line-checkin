@@ -1,16 +1,20 @@
 footer {
   background-color: #3F51B5;
   color: #fff;
-  padding: 10px 200px;
-  text-align: center;
-  background-color: #3F51B5;
-  padding: 7px 0;
-  margin: 0;
+  padding: 10px 0; /* Adjusted padding */
   text-align: center;
   display: flex;
+  justify-content: center; /* Center the content horizontally */
 }
 
 .container {
-  max-width: 0 auto;
+  max-width: 80%; /* Adjusted max-width to 80% of the parent container */
   margin: 0 auto;
+}
+
+/* Additional styling for better responsiveness */
+@media only screen and (max-width: 600px) {
+  .container {
+    max-width: 100%; /* Change to full width on smaller screens */
+  }
 }
