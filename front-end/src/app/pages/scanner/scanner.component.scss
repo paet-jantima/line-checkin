@@ -18,15 +18,16 @@
     height: 100%;
     max-width: 500px; 
     display: block;
+    border-radius: 12px;
   }
 }
-/* ปรับขนาดของ zxing-scanner ภายใน scanner-container */
-zxing-scanner {
-  width: 80%;
-  max-width: 500px; 
-  display: block;
-  border-radius: 12px;
-}
+// /* ปรับขนาดของ zxing-scanner ภายใน scanner-container */
+// zxing-scanner {
+//   width: 80%;
+//   max-width: 500px; 
+//   display: block;
+//   border-radius: 12px;
+// }
 
 /* ปรับขนาดและตำแหน่งของ custom-button */
 .custom-button {
