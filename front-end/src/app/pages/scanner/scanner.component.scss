@@ -8,7 +8,7 @@
   margin-right: auto;
   margin-bottom: auto;
   height: 500px;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
 /* ปรับขนาดของ zxing-scanner ภายใน scanner-container */
@@ -65,7 +65,8 @@ table {
   left: 50%;
   transform: translateX(-50%);
   font-size: 24px;
-  color: #3F51B5; /* ปรับสีตัวหนังตามต้องการ */
+  color: #ffffff; /* ปรับสีตัวหนังตามต้องการ */
+  background-color: #3F51B5;
   align-items: center;
   justify-content: center;
 }
