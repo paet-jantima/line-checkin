@@ -35,15 +35,15 @@ button {
   @include flex-center; 
   flex-direction: column;
   position: relative;
-  
-  zxing-scanner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
-  }
+}
+
+.zxing-scanner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
 }
 
 .scan-text {
