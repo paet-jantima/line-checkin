@@ -58,9 +58,7 @@ table {
   justify-content: center;
   display: flex;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: 100vh; /* ทำให้เต็มหน้าจอ */
-  padding-top: -30%; /* ที่ว่างด้านบน */
-  padding-bottom: 10px; /* ที่ว่างด้านล่าง */
+  height: 40vh; /* ทำให้เต็มหน้าจอ */
 }
 
 .scan-text {
