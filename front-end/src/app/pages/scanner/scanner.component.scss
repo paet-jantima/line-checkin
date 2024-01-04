@@ -2,7 +2,6 @@
 /* ปรับขนาดของ scanner-container ตามที่ต้องการ */
 .scanner-container {
   position: relative;
-  bottom: 50%;
   border-radius: 12px;
   background-color: #3F51B5;
   display: flex;
@@ -14,7 +13,6 @@
 }
 /* ปรับขนาดของ zxing-scanner ภายใน scanner-container */
 zxing-scanner {
-  position: relative;
   width: 80%;
   max-width: 500px; 
   display: block;
@@ -23,7 +21,7 @@ zxing-scanner {
 /* ปรับขนาดและตำแหน่งของ custom-button */
 .custom-button {
   position: absolute; /* ตั้งค่าตำแหน่งเป็น absolute */
-  top: auto; /* จัดให้ปุ่มติดอยู่ด้านบนสุด */
+  top: 20%; /* จัดให้ปุ่มติดอยู่ด้านบนสุด */
   left: 50%; /* จัดให้ปุ่มอยู่ตรงกลางแนวนอน */
   transform: translateX(-50%); /* ย้ายปุ่มไปที่ตำแหน่งกลางแนวนอน */
   padding: 10px 20px;
@@ -42,8 +40,8 @@ table {
   margin: 0 auto; /* Center the table horizontally */
 }
 
-.back-button {
-  top: 20px;
+.back-button {  
+  bottom: 50%;
   left: 20px;
   z-index: 2; /* เพิ่มค่า z-index เพื่อให้อยู่ด้านบนสุด */
   font-size: 24px;
