@@ -67,7 +67,7 @@ table {
 
 
 .scan-text {
-  position: absolute;
+  position: static;
   top: 10px; /* ตำแหน่งที่ไม่ทับกับส่วนอื่น ๆ ของ .scanner-container */
   transform: translate(-50%, 0); /* ใช้ translate เพื่อคงความแน่นอนที่ตำแหน่งแนวนอน */
   left: 50%;
