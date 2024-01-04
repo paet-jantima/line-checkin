@@ -51,3 +51,15 @@ table {
   align-items: center;
 }
 
+.scanner-container {
+  position: relative;
+}
+
+.scan-text {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: white; /* ปรับสีตัวหนังตามต้องการ */
+}
