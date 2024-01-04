@@ -17,8 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     credentials: true,
-    //origin: 'https://line-checkin.vercel.app',
-    origin: 'http://localhost:4200'
+    origin: 'https://line-checkin.vercel.app'
 }));
 
 app.use("/api/role", roleRoute);

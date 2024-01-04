@@ -32,7 +32,7 @@ export class UserslistComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-     if (!this.authService.isLoggedIn()) {
+    if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/line']);
        return;
     }

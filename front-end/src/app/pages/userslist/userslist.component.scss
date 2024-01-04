@@ -50,3 +50,9 @@ th, td {
   width: 100vh;
   height: 80vh;
 }
+
+.items-center {
+  border-radius: 50%; /* หรือค่าที่คุณต้องการ */
+  max-width: 100%; /* ทำให้รูปภาพเป็น responsive */
+  height: auto; /* ทำให้รูปภาพเป็น responsive */
+}
