@@ -25,6 +25,7 @@ zxing-scanner {
   width: 80%;
   max-width: 500px; 
   display: block;
+  border-radius: 12px;
 }
 
 /* ปรับขนาดและตำแหน่งของ custom-button */
@@ -64,11 +65,12 @@ table {
 /* Adjust the scan-text positioning */
 .scan-text {
   position: absolute;
-  top: 100%; /* Set bottom to 50% */
-  transform: translate(-50%, 50%); /* Use translate to center vertically and horizontally */
+  top: 0; /* ตั้งค่า top เป็น 0 เพื่อให้ .scan-text อยู่ด้านบนของ .scanner-container */
+  transform: translate(-50%, 0); /* ใช้ translate เพื่อคงความแน่นอนที่ตำแหน่งแนวนอน */
   left: 50%;
   font-size: 24px;
   font-weight: bold;
   color: #000000;
 }
+
 
