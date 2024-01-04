@@ -16,9 +16,10 @@ zxing-scanner {
   width: 100%; /* กำหนดความกว้างเต็มขอบ */
   height: 300px; /* กำหนดความสูงตามที่ต้องการ */
   display: block; /* ตั้งค่าการแสดงผลเป็น block element */
+  border-radius: 8px;
 }
 
-/* ปรับขนาดและตำแหน่งของ custom-button */
+/* ปรับขนาดและตำแหน่งของ custom-button */ 
 .custom-button {
   position: absolute; /* ตั้งค่าตำแหน่งเป็น absolute */
   top: auto; /* จัดให้ปุ่มติดอยู่ด้านบนสุด */
@@ -56,6 +57,10 @@ table {
   align-items: center;
   justify-content: center;
   display: flex;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 100vh; /* ทำให้เต็มหน้าจอ */
+  padding-top: 20px; /* ที่ว่างด้านบน */
+  padding-bottom: 20px; /* ที่ว่างด้านล่าง */
 }
 
 .scan-text {
