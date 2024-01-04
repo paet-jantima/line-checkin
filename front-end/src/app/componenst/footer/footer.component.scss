@@ -1,20 +1,24 @@
-footer {
-  background-color: #3F51B5;
-  color: #fff;
-  padding: 10px 0; /* Adjusted padding */
-  text-align: center;
+:host {
   display: flex;
-  justify-content: center; /* Center the content horizontally */
+  flex-direction: column;
+  height: 100%;  
 }
 
-.container {
-  max-width: 80%; /* Adjusted max-width to 80% of the parent container */
-  margin: 0 auto;
+footer {
+  margin-top: auto;
+  padding: 10px;
 }
 
-/* Additional styling for better responsiveness */
-@media only screen and (max-width: 600px) {
-  .container {
-    max-width: 100%; /* Change to full width on smaller screens */
-  }
+.footer-container {
+  background-color:#3F51B5; 
+  width: 100%; 
+  color: #fff;
+  display: flex;  
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  footer {
+    padding: 5px;
+  }  
 }
