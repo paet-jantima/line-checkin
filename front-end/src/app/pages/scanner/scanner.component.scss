@@ -1,22 +1,22 @@
 
 /* ปรับขนาดของ scanner-container ตามที่ต้องการ */
 .scanner-container {
-  position: relative; /* ตั้งค่าตำแหน่งเป็น relative */
-  width: 90%; /* กำหนดความกว้างตามที่ต้องการ */
-  // max-width: 600px; /* กำหนดความกว้างสูงสุด */
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: auto;
-  height: 500px;
+  position: relative;
+  width: 90%;
+  max-width: 600px; /* Set a max-width to limit the width */
+  margin: 20px auto; /* Simplify margin settings */
+  height: 300px; /* Reduce the height to 300px */
   border-radius: 8px;
+  background-color: #3F51B5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 /* ปรับขนาดของ zxing-scanner ภายใน scanner-container */
 zxing-scanner {
-  width: 100%; /* กำหนดความกว้างเต็มขอบ */
-  height: 300px; /* กำหนดความสูงตามที่ต้องการ */
-  display: block; /* ตั้งค่าการแสดงผลเป็น block element */
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 /* ปรับขนาดและตำแหน่งของ custom-button */
