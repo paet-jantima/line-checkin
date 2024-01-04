@@ -1,14 +1,10 @@
-:host {
-  display: flex;
-  flex-direction: column;
-}
-
-footer {
+.footer-container {
   margin-top: auto;
   background-color: #3F51B5;
   color: #fff;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 @media (max-width: 600px) {
