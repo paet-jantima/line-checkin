@@ -77,3 +77,13 @@ table {
   z-index: 1;
 }
 
+//SCANTextที่ใช้งานได้และออกมาได้ปกติแต่ผิดรูปแบบการจัดวางต้องแก้ไข
+// .scan-text {
+//   position: absolute;
+//   top: 100%; /* Set bottom to 50% */
+//   transform: translate(-50%, 50%); /* Use translate to center vertically and horizontally */
+//   left: 50%;
+//   font-size: 24px;
+//   font-weight: bold;
+//   color: #000000;
+// }
