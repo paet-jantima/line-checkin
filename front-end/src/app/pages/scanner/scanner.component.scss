@@ -1,6 +1,7 @@
 
 /* ปรับขนาดของ scanner-container ตามที่ต้องการ */
 .scanner-container {
+  bottom: 50%;
   border-radius: 12px;
   background-color: #3F51B5;
   display: flex;
@@ -52,7 +53,7 @@ table {
 /* Adjust the scan-text positioning */
 .scan-text {
   position: absolute;
-  bottom: 50%; /* Set bottom to 50% */
+  top: 100%; /* Set bottom to 50% */
   transform: translate(-50%, 50%); /* Use translate to center vertically and horizontally */
   left: 50%;
   font-size: 24px;
