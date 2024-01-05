@@ -1,20 +1,24 @@
-/* Container Styles */
 .mat-elevation-z8 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow-x: auto; /* เพิ่มการสลับในแนวนอน */
   margin: 20px;
   padding: 20px;
 }
-
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* หรือ flex-end ตามที่คุณต้องการ */
+}
 /* Table Header Styles */
 .table-header {
   margin-bottom: 25px;
   margin-top: -10px;
 }
 
-.RankFont{
+.RankFont {
   font-size: 30px;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   margin-bottom: 25px;
   margin-top: -10px;
 }
@@ -58,7 +62,7 @@ th, td {
   height: 10%;
   transform-origin: center;
   position: absolute;
-  top: 0;
+  top: 50px;
 }
 
 .items-center {
