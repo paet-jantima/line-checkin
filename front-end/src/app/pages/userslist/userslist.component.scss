@@ -46,10 +46,12 @@ th, td {
   }
 }
 
-// .container {
-//   width: 100vh;
-//   height: 80vh;
-// }
+.SVGimage{
+  width: 100%;
+  height: 100%;
+  transform: scale(0.5); /* Adjust the scale factor as needed */
+  transform-origin: center; /* Optional: Set the transform origin to the center for better scaling */
+}
 
 .items-center {
   border-radius: 50%; /* หรือค่าที่คุณต้องการ */
