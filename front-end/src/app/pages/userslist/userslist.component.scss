@@ -1,12 +1,13 @@
 .mat-elevation-z8 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow-x: auto; /* เพิ่มการสลับในแนวนอน */
-  margin: 20px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  max-width: 800px;
+  overflow-x: auto;
+  margin: 20px auto;
 }
 /* Table Header Styles */
 .table-header {
