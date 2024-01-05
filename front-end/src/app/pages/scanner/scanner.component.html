@@ -10,9 +10,13 @@
           [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
           (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
       </div>
-      <div class="scan-text">
-        Scan QR Code
-      </div>
+      <section>
+        <div class="scan-text">
+          <a mat-stroked-button href="#" target="_blank">Scan QR Code</a>
+        </div>
+      </section>
     </td>
   </tr>
 </table>
+
+<!-- <button mat-stroked-button disabled>Disabled</button> -->
