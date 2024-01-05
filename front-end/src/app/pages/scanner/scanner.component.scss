@@ -66,24 +66,23 @@ table {
 }
 
 
-.scan-text {
-  position: static;
-  top: 10px; /* ตำแหน่งที่ไม่ทับกับส่วนอื่น ๆ ของ .scanner-container */
-  transform: translate(-50%, 0); /* ใช้ translate เพื่อคงความแน่นอนที่ตำแหน่งแนวนอน */
-  left: 50%;
-  font-size: 24px;
-  font-weight: bold;
-  color: #000000;
-  z-index: 1;
-}
-
-//SCANTextที่ใช้งานได้และออกมาได้ปกติแต่ผิดรูปแบบการจัดวางต้องแก้ไข
 // .scan-text {
-//   position: absolute;
-//   top: 100%; /* Set bottom to 50% */
-//   transform: translate(-50%, 50%); /* Use translate to center vertically and horizontally */
+//   position: static;
+//   top: 10px; /* ตำแหน่งที่ไม่ทับกับส่วนอื่น ๆ ของ .scanner-container */
+//   transform: translate(-50%, 0); /* ใช้ translate เพื่อคงความแน่นอนที่ตำแหน่งแนวนอน */
 //   left: 50%;
 //   font-size: 24px;
 //   font-weight: bold;
 //   color: #000000;
+//   z-index: 1;
 // }
+
+ .scan-text {
+   position: absolute;
+   top: 100%; /* Set bottom to 50% */
+   transform: translate(-50%, 50%); /* Use translate to center vertically and horizontally */
+   left: 50%;
+   font-size: 24px;
+   font-weight: bold;
+   color: #000000;
+ }
