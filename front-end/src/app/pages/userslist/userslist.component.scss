@@ -15,6 +15,8 @@
 }
 
 .RankFont {
+  display: inline-block;
+  text-align: center;
   font-size: 30px;
   font-weight: bold;
   letter-spacing: 0.1em;
@@ -59,7 +61,7 @@ th, td {
 .SVGimage{
   width: 10%;
   height: 10%;
-  transform-origin: center;
+  align-items: center;
   position: absolute;
   top: 50px;
 }
