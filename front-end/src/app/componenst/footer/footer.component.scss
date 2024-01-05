@@ -1,13 +1,14 @@
 /* footer.component.scss */
-footer {
+.footer {
   background-color: #3F51B5;
   color: #fff;
   padding: 10px 0;
   text-align: center;
+  position: relative;
 
   .footer-content {
     max-width: 1200px;
-    margin:auto;
+    margin: auto;
   }
 
   p {
@@ -22,4 +23,17 @@ footer {
       padding: 0 10px;
     }
   }
+}
+
+/* Add this new CSS for the sticky footer */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
