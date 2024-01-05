@@ -1,11 +1,13 @@
 /* Container Styles */
 .mat-elevation-z8 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow-x: auto; /* เพิ่มการสลับในแนวนอน */
+  overflow-x: auto;
   margin: 20px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
-
 /* Table Header Styles */
 .table-header {
   text-align: center;
@@ -17,6 +19,12 @@ table {
   width: 100%;
   border-collapse: collapse;
   flex: 1; /* Allow the table to grow and fill the available space */
+  margin-bottom: 16px; /* Add margin at the bottom to separate table and paginator */
+}
+
+/* Paginator Styles */
+.mat-paginator {
+  margin-top: auto; /* Push the paginator to the bottom */
 }
 
 th, td {
