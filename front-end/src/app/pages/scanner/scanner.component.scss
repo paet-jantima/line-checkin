@@ -68,11 +68,10 @@ table {
 
  .scan-text {
    position: absolute;
-   top: 45%; /* Set bottom to 50% */
+   top: 50%; /* Set bottom to 50% */
    transform: translate(-50%, 50%); /* Use translate to center vertically and horizontally */
    left: 50%;
    font-size: 80px;
    font-weight: bold;
-   color: #3F51B5;
-   background-color: #3F51B5;
+   color: #fff
  }
