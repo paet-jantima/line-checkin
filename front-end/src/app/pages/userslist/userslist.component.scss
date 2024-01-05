@@ -25,16 +25,25 @@
 }
 
 .RankFont {
-  position: absolute;
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  margin-bottom: -10px;
-  margin-top: -10px;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 10%;
+    height: 10%;
+    right: 45%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 50px;
 }
+// .RankFont {
+//   position: absolute;
+//   font-size: 30px;
+//   font-weight: 700;
+//   letter-spacing: 0.1em;
+//   margin-bottom: -10px;
+//   margin-top: -10px;
+//   top: 0;
+//   left: 50%;
+//   transform: translateX(-50%);
+// }
 
 /* Table Styles */
 table {
