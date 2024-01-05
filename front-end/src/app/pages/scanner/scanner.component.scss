@@ -66,23 +66,12 @@ table {
 }
 
 
-// .scan-text {
-//   position: static;
-//   top: 10px; /* ตำแหน่งที่ไม่ทับกับส่วนอื่น ๆ ของ .scanner-container */
-//   transform: translate(-50%, 0); /* ใช้ translate เพื่อคงความแน่นอนที่ตำแหน่งแนวนอน */
-//   left: 50%;
-//   font-size: 24px;
-//   font-weight: bold;
-//   color: #000000;
-//   z-index: 1;
-// }
-
  .scan-text {
    position: absolute;
-   top: 60%; /* Set bottom to 50% */
+   top: 40%; /* Set bottom to 50% */
    transform: translate(-50%, 50%); /* Use translate to center vertically and horizontally */
    left: 50%;
-   font-size: 24px;
+   font-size: 40px;
    font-weight: bold;
-   color: #000000;
+   color: #3F51B5;
  }
