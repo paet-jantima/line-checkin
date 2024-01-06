@@ -8,34 +8,35 @@
         <mat-calendar [(selected)]="selected"></mat-calendar>
       </mat-card>
     </span>
-    <div class="buttons">
-      <button (click)="checkin()" mat-raised-button class="custom-button" id="green" style="font-size: 16px; color: #FFFFFF;">Check-in</button>
-      <button (click)="checkout()" mat-raised-button class="custom-button" id="red" style="font-size: 16px; color: #FFFFFF;">Check-out</button>
-      <button (click)="getmytime()" mat-raised-button class="custom-button" id="blue" style="font-size: 16px; color: #FFFFFF;">History</button>
-      <button routerLink="userslist" mat-raised-button class="custom-button" id="navy" style="font-size: 16px; color: #FFFFFF;">Rankings</button>
+    <div class="button-container">
+      <div class="button top-left" (click)="checkin()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+          <!-- Your SVG logo for Check-in button here -->
+        </svg>
+        <p>Check-in</p>
+      </div>
+      <div class="button top-right" (click)="checkout()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+          <!-- Your SVG logo for Check-out button here -->
+        </svg>
+        <p>Check-out</p>
+      </div>
+      <div class="button bottom-left" (click)="getmytime()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+          <!-- Your SVG logo for History button here -->
+        </svg>
+        <p>History</p>
+      </div>
+      <div class="button bottom-right" (click)="navigateToUsersList()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+          <!-- Your SVG logo for Rankings button here -->
+        </svg>
+        <p>Rankings</p>
+      </div>
     </div>
+    
 
   </div>
 </body>
 
 
-<div class="button-container">
-  <div class="button top-left" (click)="checkin()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
-      <!-- Your SVG logo for Check-in button here -->
-    </svg>
-    <p>Check-in</p>
-  </div>
-  <div class="button top-right" (click)="checkout()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
-      <!-- Your SVG logo for Check-out button here -->
-    </svg>
-    <p>Check-out</p>
-  </div>
-  <div class="button bottom-left" (click)="getmytime()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
-      <!-- Your SVG logo for History button here -->
-    </svg>
-    <p>History</p>
-  </div>
-</div>

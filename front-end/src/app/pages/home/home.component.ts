@@ -83,6 +83,13 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['scanner'], { queryParams: { type: 'checkout' } });
   }
 
+  navigateToUsersList() {
+    // ทำสิ่งที่คุณต้องการเมื่อปุ่มถูกคลิก
+    // ยกตัวอย่างเช่น:
+    this.router.navigate(['/userslist']);
+  }
+  
+
 
 
 
