@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/user';
+import * as aos from 'aos';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private userService: UserService,) { }
   ngOnInit(): void {
+    aos.init();
     this.authService.isloggedIn$.subscribe(res => {
       this.isloggedIn = res;
       if (res) {
