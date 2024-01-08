@@ -1,6 +1,17 @@
-<mat-toolbar data-aos="fade-down" data-aos-duration="1500" color="primary" class="pmd-toolbar">
+<mat-toolbar
+  data-aos="fade-down"
+  data-aos-duration="1500"
+  color="primary"
+  class="pmd-toolbar"
+>
   <div class="logo">
-    <span data-aos="fade-down" data-aos-duration="2500" routerLink="" class="text-white text-4xl font-bold"
+    <span
+      data-aos="fade-down"
+      data-aos-anchor="#example-anchor"
+      data-aos-offset="500"
+      data-aos-duration="500"
+      routerLink=""
+      class="text-white text-4xl font-bold"
       >TheRabbitTech</span
     >
   </div>
@@ -11,7 +22,9 @@
         <button
           [matMenuTriggerFor]="menuHero"
           data-aos="fade-left"
-          data-aos-duration="3500"
+          data-aos-anchor="#example-anchor"
+          data-aos-offset="500"
+          data-aos-duration="500"
           color="primary"
           ng-init
         >
