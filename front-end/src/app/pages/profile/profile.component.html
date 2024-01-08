@@ -9,12 +9,12 @@
   </button>
   <ng-container *ngFor="let user of users">
     <div class="profile-container">
-      <img data-aos="fade-down" data-aos-duration="2000"
+      <img data-aos="fade-down" data-aos-duration="2500"
         [src]="user.profileImage"
         alt="Profile Image"
         class="rounded-full w-24 h-24 mb-4"
       />
-      <h2 data-aos="fade-down" data-aos-duration="2500" class="text-3xl font-semibold">
+      <h2 data-aos="fade-down" data-aos-duration="3000" class="text-3xl font-semibold">
         {{ user.firstName }} {{ user.lastName }} ({{ user.nickname }})
       </h2>
       <div class="profile-details mt-4">
@@ -26,16 +26,16 @@
           <mat-icon data-aos="fade-right" data-aos-duration="3000" class="icon">phone</mat-icon>
           <p><strong>Phone Number:</strong> {{ user.phoneNumber }}</p>
         </div>
-        <div data-aos="fade-down" data-aos-duration="3500" class="detail-item">
-          <mat-icon data-aos="fade-right" data-aos-duration="3500" class="icon">location_on</mat-icon>
+        <div data-aos="fade-down" data-aos-duration="3000" class="detail-item">
+          <mat-icon data-aos="fade-right" data-aos-duration="3000" class="icon">location_on</mat-icon>
           <p><strong>Address:</strong> {{ user.address }}</p>
         </div>
-        <div data-aos="fade-down" data-aos-duration="4000" class="detail-item">
-          <mat-icon data-aos="fade-right" data-aos-duration="4000" class="icon">work</mat-icon>
+        <div data-aos="fade-down" data-aos-duration="3000" class="detail-item">
+          <mat-icon data-aos="fade-right" data-aos-duration="3000" class="icon">work</mat-icon>
           <p><strong>Job Position:</strong> {{ user.jobPosition }}</p>
         </div>
-        <div data-aos="fade-down" data-aos-duration="4500" class="detail-item">
-          <mat-icon data-aos="fade-right" data-aos-duration="4500" class="icon">face</mat-icon>
+        <div data-aos="fade-down" data-aos-duration="3000" class="detail-item">
+          <mat-icon data-aos="fade-right" data-aos-duration="3000" class="icon">face</mat-icon>
           <p><strong>Gender:</strong> {{ user.gender }}</p>
         </div>
         <!-- เพิ่มไอคอนและข้อมูลเพิ่มเติมตามต้องการ -->
