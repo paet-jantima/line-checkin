@@ -11,6 +11,7 @@ import { timer } from 'rxjs';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
 import {MatNativeDateModule} from '@angular/material/core';
+import AOS from 'aos';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    AOS.init();
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/line']);
 
