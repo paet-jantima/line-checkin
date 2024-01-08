@@ -1,20 +1,24 @@
 <body>
   <div class="container">
-    <span data-aos="flip-right" data-aos-duration="800"  data-aos-anchor="#example-anchor"
+    <span data-aos="flip-right" data-aos-duration="1000"  data-aos-anchor="#example-anchor"
     data-aos-offset="500"
     data-aos-duration="500" class="date-time">
-      <div class="clock">
-        <p class="time">{{ dateTime | date:'HH:mm:ss' }}</p> <!-- สีข้อความ -->
+      <div data-aos="flip-right" data-aos-duration="1500"  data-aos-anchor="#example-anchor"
+      data-aos-offset="500"
+      data-aos-duration="500" class="clock">
+        <p data-aos="flip-right" data-aos-duration="800"  data-aos-anchor="#example-anchor"
+        data-aos-offset="500"
+        data-aos-duration="2000" class="time">{{ dateTime | date:'HH:mm:ss' }}</p> <!-- สีข้อความ -->
       </div>
       <mat-card class="demo-inline-calendar-card" > <!-- สีพื้นหลัง -->
         <mat-calendar [(selected)]="selected"></mat-calendar>
       </mat-card>
     </span>
-    <div data-aos="flip-up" data-aos-duration="1200" class="buttons">
-      <button data-aos="flip-down" data-aos-duration="1600" (click)="checkin()" mat-raised-button class="custom-button" id="green" style="font-size: 16px; color: #FFFFFF;">Check-in</button>
-      <button data-aos="flip-down" data-aos-duration="2000" (click)="checkout()" mat-raised-button class="custom-button" id="red" style="font-size: 16px; color: #FFFFFF;">Check-out</button>
-      <button data-aos="flip-down" data-aos-duration="2400" (click)="getmytime()" mat-raised-button class="custom-button" id="blue" style="font-size: 16px; color: #FFFFFF;">History</button>
-      <button data-aos="flip-down" data-aos-duration="2800" (click)="navigateToUsersList()" mat-raised-button class="custom-button" id="navy" style="font-size: 16px; color: #FFFFFF;">Rankings</button>
+    <div class="buttons">
+      <button data-aos="zoom-in" data-aos-duration="2500" (click)="checkin()" mat-raised-button class="custom-button" id="green" style="font-size: 16px; color: #FFFFFF;">Check-in</button>
+      <button data-aos="zoom-in" data-aos-duration="3000" (click)="checkout()" mat-raised-button class="custom-button" id="red" style="font-size: 16px; color: #FFFFFF;">Check-out</button>
+      <button data-aos="zoom-in" data-aos-duration="3500" (click)="getmytime()" mat-raised-button class="custom-button" id="blue" style="font-size: 16px; color: #FFFFFF;">History</button>
+      <button data-aos="zoom-in" data-aos-duration="4000" (click)="navigateToUsersList()" mat-raised-button class="custom-button" id="navy" style="font-size: 16px; color: #FFFFFF;">Rankings</button>
     </div>
 
   </div>
