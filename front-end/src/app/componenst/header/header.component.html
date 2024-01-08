@@ -5,11 +5,16 @@
     >
   </div>
   <span class="example-spacer"></span>
-  <div data-aos="fade-left"
-  data-aos-duration="3500" class="nav-items">
+  <div class="nav-items">
     <ng-container *ngIf="isloggedIn">
       <ng-container *ngFor="let user of users">
-        <button [matMenuTriggerFor]="menuHero" color="primary" ng-init>
+        <button
+          [matMenuTriggerFor]="menuHero"
+          data-aos="fade-left"
+          data-aos-duration="3500"
+          color="primary"
+          ng-init
+        >
           <span
             class="text-xl text-white font-semibold mx-3 hover:underline hover:text-indigo-200"
           >
@@ -20,10 +25,7 @@
             />
           </span>
         </button>
-        <mat-menu
-          #menuHero="matMenu"
-          class="uxg-user-profile"
-        >
+        <mat-menu #menuHero="matMenu" class="uxg-user-profile">
           <div class="uxg-menu-header">
             <div class="uxg-avatar-hero-block">
               <div class="uxg-avatar" large>
