@@ -38,11 +38,11 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "node_modules/aos/dist/aos.css",
-              "node_modules/bootsrap/dis/css/bootstrap.mis.css",
-              "node_modules/bootsrap-icons/font/js/boostrap-icons.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
             "scripts": [
-              "node_modules/bootsrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
