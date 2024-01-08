@@ -1,5 +1,5 @@
 <body>
-  <div data-aos="flip-right" class="container">
+  <div data-aos="flip-right" data-aos-duration="2500" class="container">
     <span class="date-time">
       <div class="clock">
         <p class="time">{{ dateTime | date:'HH:mm:ss' }}</p> <!-- สีข้อความ -->
@@ -8,7 +8,7 @@
         <mat-calendar [(selected)]="selected"></mat-calendar>
       </mat-card>
     </span>
-    <div data-aos="flip-up" class="buttons">
+    <div data-aos="flip-up" data-aos-duration="3250" class="buttons">
       <button (click)="checkin()" mat-raised-button class="custom-button" id="green" style="font-size: 16px; color: #FFFFFF;">Check-in</button>
       <button (click)="checkout()" mat-raised-button class="custom-button" id="red" style="font-size: 16px; color: #FFFFFF;">Check-out</button>
       <button (click)="getmytime()" mat-raised-button class="custom-button" id="blue" style="font-size: 16px; color: #FFFFFF;">History</button>
