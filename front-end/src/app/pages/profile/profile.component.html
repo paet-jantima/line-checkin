@@ -1,4 +1,4 @@
-<div data-aos="fade-up" class="profile-grid">
+<div data-aos="fade-down" class="profile-grid">
   <button
     mat-icon-button
     color="primary"
@@ -17,8 +17,8 @@
       <h2 data-aos="fade-down" data-aos-duration="2500" class="text-3xl font-semibold">
         {{ user.firstName }} {{ user.lastName }} ({{ user.nickname }})
       </h2>
-      <div data-aos="fade-down" data-aos-duration="3000" class="profile-details mt-4">
-        <div class="detail-item">
+      <div class="profile-details mt-4">
+        <div data-aos="fade-down" data-aos-duration="3000" class="detail-item">
           <mat-icon data-aos="fade-right" data-aos-duration="3000" class="icon">email</mat-icon>
           <p><strong>Email:</strong> {{ user.email }}</p>
         </div>
