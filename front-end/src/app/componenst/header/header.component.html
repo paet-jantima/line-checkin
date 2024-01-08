@@ -5,7 +5,8 @@
     >
   </div>
   <span class="example-spacer"></span>
-  <div class="nav-items">
+  <div data-aos="fade-left"
+  data-aos-duration="3500" class="nav-items">
     <ng-container *ngIf="isloggedIn">
       <ng-container *ngFor="let user of users">
         <button [matMenuTriggerFor]="menuHero" color="primary" ng-init>
@@ -21,8 +22,6 @@
         </button>
         <mat-menu
           #menuHero="matMenu"
-          data-aos="fade-left"
-          data-aos-duration="3500"
           class="uxg-user-profile"
         >
           <div class="uxg-menu-header">
