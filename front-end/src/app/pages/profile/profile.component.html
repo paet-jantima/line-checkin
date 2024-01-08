@@ -1,29 +1,40 @@
-<div class="profile-grid">
-  <button mat-icon-button color="primary" class="back-button" (click)="goBack()">
+<div data-aos="fade-up" class="profile-grid">
+  <button
+    mat-icon-button
+    color="primary"
+    class="back-button"
+    (click)="goBack()"
+  >
     <mat-icon>arrow_back</mat-icon>
   </button>
-<ng-container *ngFor="let user of users">
+  <ng-container *ngFor="let user of users">
     <div class="profile-container">
-      <img [src]="user.profileImage" alt="Profile Image" class="rounded-full w-24 h-24 mb-4">
-      <h2 class="text-3xl font-semibold">{{ user.firstName }} {{ user.lastName }} ({{user.nickname}})</h2>
-      <div class="profile-details mt-4">
+      <img data-aos="fade-down" data-aos-duration="2000"
+        [src]="user.profileImage"
+        alt="Profile Image"
+        class="rounded-full w-24 h-24 mb-4"
+      />
+      <h2 data-aos="fade-down" data-aos-duration="2500" class="text-3xl font-semibold">
+        {{ user.firstName }} {{ user.lastName }} ({{ user.nickname }})
+      </h2>
+      <div data-aos="fade-down" data-aos-duration="3000" class="profile-details mt-4">
         <div class="detail-item">
           <mat-icon class="icon">email</mat-icon>
           <p><strong>Email:</strong> {{ user.email }}</p>
         </div>
-        <div class="detail-item">
+        <div data-aos="fade-down" data-aos-duration="3500" class="detail-item">
           <mat-icon class="icon">phone</mat-icon>
           <p><strong>Phone Number:</strong> {{ user.phoneNumber }}</p>
         </div>
-        <div class="detail-item">
+        <div data-aos="fade-down" data-aos-duration="4000" class="detail-item">
           <mat-icon class="icon">location_on</mat-icon>
           <p><strong>Address:</strong> {{ user.address }}</p>
         </div>
-        <div class="detail-item">
+        <div data-aos="fade-down" data-aos-duration="4500" class="detail-item">
           <mat-icon class="icon">work</mat-icon>
           <p><strong>Job Position:</strong> {{ user.jobPosition }}</p>
         </div>
-        <div class="detail-item">
+        <div data-aos="fade-down" data-aos-duration="5000" class="detail-item">
           <mat-icon class="icon">face</mat-icon>
           <p><strong>Gender:</strong> {{ user.gender }}</p>
         </div>
@@ -32,13 +43,16 @@
           <!-- เพิ่มรายละเอียดเพิ่มเติมตามต้องการ -->
         </div>
         <!-- ปุ่มแก้ไข -->
-        <button mat-stroked-button color="primary" class="edit-button" [routerLink]="['/edit']">
+        <button
+          mat-stroked-button
+          color="primary"
+          class="edit-button"
+          [routerLink]="['/edit']"
+        >
           <mat-icon class="icon">edit</mat-icon>
           Edit
         </button>
       </div>
-
-
     </div>
   </ng-container>
 </div>
