@@ -33,7 +33,10 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    AOS.init();
+    AOS.init({
+      once: true,
+      duration: 650
+    });
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/line']);
 
