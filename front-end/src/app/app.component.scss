@@ -1,44 +1,34 @@
-  /* CSS */
-  .container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background-color: #fff;
-    padding: 0px;
-    border-radius: 8px;
-    // box-shadow: 0 4px 6px #0000001a;
-    width: 100%;
-    max-width: 1200%; /* Adjust as needed */
-    margin: 0 auto;
-    align-items: center;
-}
-@media screen and (max-width: 600px) {
-  .container {
-    padding: 10px;
-  }
-}
-
 .container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  gap: 20px;
+  padding: 0px;
+  background-color: #fff;
+  border-radius: 8px;
   width: 100%;
-  height: 100vh;
-}
-
-  .header {
-    /* เพิ่มระยะห่างด้านล่างของ header */
-    margin-bottom: 50px; /* ปรับตามความต้องการ */
-  }
-
-  .main-content {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+ }
+ 
+ .header {
+  margin-bottom: 50px;
+ }
+ 
+ .main-content {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+ }
 
   .content {
     /* เพิ่มระยะห่างด้านบนของ router-outlet */
     padding-top: 40px; /* ปรับตามความต้องการ */
+  }
+
+  @media screen and (max-width: 600px) {
+    .container {
+      padding: 10px;
+    }
   }
