@@ -1,7 +1,7 @@
 .footer {
     background-color: #3F51B5;
-    padding: 1rem; /* Add padding for better spacing */
     color: #ffffff;
+    padding: 1rem; /* Add padding for better spacing */
 }
 
 .footer h5 {
@@ -24,6 +24,6 @@
     }
 
     .footer .col-md-4 {
-        margin-bottom: 30px;
+        margin-bottom: 20px; /* Adjust margin for better spacing on small screens */
     }
 }
