@@ -1,14 +1,10 @@
 .footer {
     background-color: #3F51B5;
     padding: 30px 0;
+    color: #ffffff; /* Add text color for better readability */
 }
 
-.footer {
-    margin-top: auto; /* Pushes the footer to the bottom */
-   }
-
 .footer h5 {
-    color: #ffffff;
     margin-bottom: 10px;
 }
 
@@ -24,6 +20,7 @@
 
 @media (max-width: 767px) {
     .footer .row {
+        display: flex;
         flex-direction: column;
     }
 

@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
@@ -8,44 +7,40 @@ import { UserService } from 'src/app/services/user/user.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TimeRecordService } from 'src/app/services/time/time.service';
 import { timer } from 'rxjs';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatCardModule} from '@angular/material/card';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
 import AOS from 'aos';
-
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   users: User[] = [];
   dateTime: Date = new Date();
-  selected!: Date ;
+  selected!: Date;
 
   constructor(
     private userService: UserService,
     private router: Router,
     private authService: AuthService,
-    private timeService:TimeRecordService
-
+    private timeService: TimeRecordService
   ) {}
 
   ngOnInit(): void {
     AOS.init({
       once: true,
-      duration: 650
+      duration: 650,
     });
     if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/line']);
-
+      this.router.navigate(['line']);
     }
 
-
-    timer(0,1000).subscribe(()=>{
+    timer(0, 1000).subscribe(() => {
       this.dateTime = new Date();
-    })
+    });
     this.getUserById();
   }
 
@@ -61,7 +56,6 @@ export class HomeComponent implements OnInit {
           } else {
             this.users = [data.data]; // If not an Array, create an Array and assign data to 'users'
           }
-
         },
         (error) => {
           console.error('Error fetching user by ID:', error);
@@ -93,9 +87,4 @@ export class HomeComponent implements OnInit {
     // ยกตัวอย่างเช่น:
     this.router.navigate(['/userslist']);
   }
-  
-
-
-
-
 }
