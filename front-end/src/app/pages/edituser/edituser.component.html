@@ -1,8 +1,8 @@
 <button mat-icon-button color="primary" class="back-button" (click)="goBack()">
   <mat-icon>arrow_back</mat-icon>
 </button>
-<h2>Edit Profile</h2>
-<div class="form-container">
+<h2 data-aos="flip-up">Edit Profile</h2>
+<div data-aos="fade-down" class="form-container">
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
 
     <div class="form-group">
