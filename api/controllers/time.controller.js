@@ -29,8 +29,14 @@ const recordCheckIn = async (req, res, next) =>{
       const existingCheckIn = await Time.findOne({
           userId,
           createdAt: { $gte: todayStart, $lte: todayEnd },
-          checkin:  { $exists: true }
+          checkin:  { $exists: true },
+          checkout: { $exists: false }
       });
+
+      if (existingCheckIn) {
+        return res.status(400).json({ error: 'คุณได้ทำการเช็คอินไปแล้วและยังไม่ได้ทำการเช็คเอาท์' });
+    }
+
 
       if (existingCheckIn && existingCheckIn.checkout) {
           return res.status(400).json({ error: 'คุณได้ทำการเช็คอินและเช็คเอาท์ไปแล้วในวันนี้' });
