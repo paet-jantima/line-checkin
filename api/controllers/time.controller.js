@@ -4,19 +4,15 @@ const Time = require('../models/Time.js');
 const User = require('../models/User.js');
 const { DateTime } = require('luxon');
 
-const recordCheckIn = async (req, res, next) =>{
+const recordCheckIn = async (req, res, next) => {
   const { userId } = req.body;
 
   try {
       const thaiTime = moment().tz('Asia/Bangkok');
-      
       const checkInTime = thaiTime.hours() * 60 + thaiTime.minutes();
       const lateThreshold = 9 * 60 + 20;
-
       const status = checkInTime > lateThreshold ? 'มาสาย' : 'ปกติ';
-
       const formattedTime = moment().format('YYYY-MM-DD HH:mm:ss')
-
       const todayStart = thaiTime.clone().startOf('day');
       const todayEnd = thaiTime.clone().endOf('day');
 
@@ -29,24 +25,28 @@ const recordCheckIn = async (req, res, next) =>{
       const existingCheckIn = await Time.findOne({
           userId,
           createdAt: { $gte: todayStart, $lte: todayEnd },
-          checkin:  { $exists: true },
-            checkout: { $exists: false } 
+          checkin: { $exists: true },
+          checkout: { $exists: false }  // ตรวจสอบว่ามีการเช็คเอาท์หรือไม่
       });
 
-      
-
-
-      if (existingCheckIn && existingCheckIn.checkout) {
-          return res.status(400).json({ error: 'คุณได้ทำการเช็คอินและเช็คเอาท์ไปแล้วในวันนี้' });
+      if (existingCheckIn) {
+          if (existingCheckIn.checkout) {
+              return res.status(400).json({ error: 'คุณได้ทำการเช็คอินและเช็คเอาท์ไปแล้วในวันนี้' });
+          } else {
+              return res.status(400).json({ error: 'คุณได้ทำการเช็คอินไปแล้วในวันนี้' });
+          }
       }
 
-      if (existingCheckIn && !existingCheckIn.checkout) {
-          return res.status(400).json({ error: 'คุณได้ทำการเช็คอินไปแล้วในวันนี้' });
-      }
+      // เพิ่มเงื่อนไขเช็คว่ามีการเช็คเอาท์หรือไม่
+      const existingCheckOut = await Time.findOne({
+          userId,
+          createdAt: { $gte: todayStart, $lte: todayEnd },
+          checkout: { $exists: true }
+      });
 
-      if (!existingCheckIn && existingCheckIn.checkout) {
-        return res.status(400).json({ error: 'คุณได้ทำการเช็คอินไปแล้วในวันนี้' });
-    }
+      if (existingCheckOut) {
+          return res.status(400).json({ error: 'คุณได้ทำการเช็คเอาท์ไปแล้วในวันนี้ ไม่สามารถเช็คอินได้อีก' });
+      }
 
       const currentTime = new Time({ userId: existingUser._id, checkin: formattedTime, status });
       await currentTime.save();
