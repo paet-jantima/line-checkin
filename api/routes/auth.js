@@ -18,7 +18,6 @@ router.post("/loginline", loginLine);
 // Register as admin
 router.post("/register-admin", registerAdmin);
 
-// Check user by ID
-router.post("/checkUserById", checkUserById);
+
 
 module.exports = router;

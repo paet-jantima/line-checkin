@@ -11,6 +11,6 @@ const { verifyAdmin } = verifyToken;
 router.post('/create', verifyAdmin, createRole);
 router.put('/update/:id', verifyAdmin, updateRole);
 router.get('/getAll', getAllRoles);
-router.delete('/deleteRole/:id', deleteRole);
+router.delete('/deleteRole/:id', verifyAdmin, deleteRole);
 
 module.exports = router;

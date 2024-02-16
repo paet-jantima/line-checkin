@@ -107,32 +107,12 @@ const loginLine = async (req, res, next) => {
     }
 };
 
-const checkUserById = async (req, res, next) => {
-    try {
-        const user = await User.findOne({ userId: req.body.user_id }).populate("roles", "role");
 
-        if (!user) {
-            return res.status(200).json({
-                status: 200,
-                message: "User not found",
-                data: false,
-            });
-        }
-
-        return res.status(200).json({
-            status: 200,
-            message: "User found",
-            data: true,
-        });
-    } catch (error) {
-        return next(CreateError(500, "Something went wrong"));
-    }
-};
 
 module.exports = {
     register,
     registerAdmin,
     login,
     loginLine,
-    checkUserById,
+
 };
