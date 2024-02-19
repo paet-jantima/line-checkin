@@ -7,18 +7,19 @@ const { CreateError } = require("../utils/error.js");
 
 const register = async (req, res, next) => {
     const role = await Role.find({ role: 'User' });
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(req.body.password, salt);
     const newUser = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        username: req.body.userName,
         email: req.body.email,
-        userId: req.body.userId,
-        phoneNumber: req.body.phoneNumber,
-        address: req.body.address,
-        jobPosition: req.body.jobPosition,
+        password: hashPassword,
+        isAdmin: false,
         roles: role,
     });
     await newUser.save();
-    return res.status(200).json("User registered ");
+    return next(CreateSuccess(200, "User registered"));
 };
 
 const registerAdmin = async (req, res, next) => {

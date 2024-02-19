@@ -2,10 +2,10 @@ const moment = require('moment');
 require('moment-timezone');
 const Time = require('../models/Time.js');
 const User = require('../models/User.js');
-const { DateTime } = require('luxon');
+
 
 const recordCheckIn = async (req, res, next) => {
-  const { userId } = req.body;
+  const userId = req.params.id;
 
   try {
       const thaiTime = moment().tz('Asia/Bangkok');
@@ -68,7 +68,7 @@ const recordCheckIn = async (req, res, next) => {
 
 
 const recordCheckOut = async (req, res, next) => {
-  const { userId } = req.body;
+  const userId = req.params.id;
 
   try {
       const todayStart = moment().startOf('day');
@@ -150,7 +150,7 @@ const getMyTimeRecords = async (req, res, next) => {
 
   
    const editTimeRecord = async (req, res, next) => {
-    const { recordId, checkin, checkout } = req.body; // รับค่า recordId, checkin และ checkout จาก req.body
+    const recordId = req.params.id; 
   
     try {
       // ตรวจสอบว่า recordId ที่รับมามีอยู่ในฐานข้อมูลหรือไม่
@@ -160,16 +160,8 @@ const getMyTimeRecords = async (req, res, next) => {
         return res.status(404).json({ error: 'ไม่พบบันทึกเวลาที่ต้องการแก้ไข' });
       }
   
-      // หาก recordId มีอยู่ในฐานข้อมูล ทำการอัปเดตเฉพาะข้อมูลที่ถูกส่งมาใหม่
-      const updatedFields = {};
-      if (checkin) updatedFields.checkin = checkin;
-      if (checkout) updatedFields.checkout = checkout;
   
-      const updatedRecord = await Time.findByIdAndUpdate(
-        recordId,
-        updatedFields,
-        { new: true }
-      );
+      const updatedRecord = await Time.findByIdAndUpdate(req.params.id, req.body, { new: true });
   
       res.status(200).json({ message: 'แก้ไขข้อมูลเวลาสำเร็จ', updatedRecord });
     } catch (error) {
