@@ -5,10 +5,10 @@
   <!-- <img class="SVGimage" src="assets/ranking-left.svg" alt="Your SVG Image"> -->
   <h2 style="font-weight: 700; font-size: 30px; letter-spacing: 0.1em; margin-bottom: -10px; margin-top: -10px; text-align: center;">Rank</h2>
  </div>
- 
+
  <div data-aos="fade-down" class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
- 
+
      <!-- No. Column -->
      <ng-container matColumnDef="index">
        <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -16,47 +16,32 @@
          {{ (pageIndex !== undefined && paginator !== undefined) ? (pageIndex * paginator.pageSize) + i + 1 : '' }}
        </td>
      </ng-container>
- 
-     <!-- Profile Column -->
-     <ng-container matColumnDef="firstName">
-       <th mat-header-cell *matHeaderCellDef> Profile </th>
-       <td mat-cell *matCellDef="let user">
-         <div class="flex items-center">
-           <img [src]="user.profileImage" alt="Profile Image" class="rounded-full w-16 h-16 mb-4 mr-2">
-         </div>
-       </td>
-     </ng-container>
- 
+
      <!-- Name Column -->
-     <ng-container matColumnDef="lastName">
+     <ng-container matColumnDef="Name">
        <th mat-header-cell *matHeaderCellDef> Name </th>
        <td mat-cell *matCellDef="let user">{{user.firstName}} {{user.lastName}} </td>
      </ng-container>
- 
-     <!-- Job Position Column -->
-     <ng-container matColumnDef="jobPosition">
-       <th mat-header-cell *matHeaderCellDef mat-sort-header> Job Position </th>
-       <td mat-cell *matCellDef="let user"> {{user.jobPosition}} </td>
-     </ng-container>
- 
+
+
      <!-- Absent Days Column -->
      <ng-container matColumnDef="absentDays">
        <th mat-header-cell *matHeaderCellDef mat-sort-header> Absent Days </th>
        <td mat-cell *matCellDef="let user"> {{user.absentDays}} </td>
      </ng-container>
- 
+
      <!-- Late Days Column -->
      <ng-container matColumnDef="lateDays">
        <th mat-header-cell *matHeaderCellDef mat-sort-header> Late Days </th>
        <td mat-cell *matCellDef="let user"> {{user.lateDays}} </td>
      </ng-container>
- 
+
      <!-- Include other columns as needed -->
- 
+
      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
      <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
   </table>
- 
+
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange($event)" showFirstLastButtons
                   aria-label="Select page of periodic elements"></mat-paginator>
  </div>
