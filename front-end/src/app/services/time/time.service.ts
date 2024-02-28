@@ -16,20 +16,20 @@ export class TimeRecordService {
   }
 
   getMytime(timeObj: any): Observable<any> {
-    return this.http.get<any>(`${apiUrls.timeServiceApi}getmytime/${timeObj}`, {});
+    return this.http.get<any>(`${apiUrls.timeServiceApi}getmytime/${timeObj}`);
   }
 
 
   checkIn(userId: any): Observable<any> {
-    return this.http.post<any>(`${apiUrls.timeServiceApi}checkin/${userId}`, {});
+    return this.http.post<any>(`${apiUrls.timeServiceApi}checkin`, userId);
   }
 
   checkOut(userId: any): Observable<any> {
-    return this.http.post<any>(`${apiUrls.timeServiceApi}checkout/${userId}`, {});
+    return this.http.post<any>(`${apiUrls.timeServiceApi}checkout`, userId);
   }
 
   edit(userId: any): Observable<any> {
-    return this.http.post<any>(`${apiUrls.timeServiceApi}edit/${userId}`, {});
+    return this.http.post<any>(`${apiUrls.timeServiceApi}edit`, userId);
   }
 
 
