@@ -16,15 +16,7 @@
   align-items: center;
 }
 
-.SVGimage{
-  width: 10%;
-    height: 10%;
-    right: 45%;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    top: 50px;
-}
+
 
 /* Table Styles */
 table {
@@ -38,30 +30,25 @@ th, td {
   border-bottom: 1px solid #ddd;
 }
 
-/* Responsive Styles for Small Screens */
-@media screen and (max-width: 600px) {
-  .mat-elevation-z8 {
-    margin: 10px;
-    padding: 10px;
-  }
+// /* Responsive Styles for Small Screens */
+// @media screen and (max-width: 600px) {
+//   .mat-elevation-z8 {
+//     margin: 10px;
+//     padding: 10px;
+//   }
 
-  th, td {
-    padding: 8px;
-    font-size: 12px;
-  }
-  
-  .flex {
-    flex-direction: column;
-    align-items: center;
-    
-    img {
-      margin-bottom: 8px;
-    }
-  }
-}
+//   th, td {
+//     padding: 8px;
+//     font-size: 12px;
+//   }
+// }
 
-.items-center {
-  border-radius: 50%; /* หรือค่าที่คุณต้องการ */
-  max-width: 100%; /* ทำให้รูปภาพเป็น responsive */
-  height: auto; /* ทำให้รูปภาพเป็น responsive */
-}
+//   .flex {
+//     flex-direction: column;
+//     align-items: center;
+
+//     img {
+//       margin-bottom: 8px;
+//     }
+//   }
+
