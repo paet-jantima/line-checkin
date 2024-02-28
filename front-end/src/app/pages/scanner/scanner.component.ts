@@ -99,11 +99,8 @@ export class ScannerComponent {
   }
 
   checkin() {
-    const data = {
-      userId: localStorage.getItem('user_id')
-    };
-
-    this.timeService.checkIn(data).subscribe(
+    const userId = localStorage.getItem('user_id');
+    this.timeService.checkIn(userId).subscribe(
       (response) => {
         // Handle successful check-in response here
         alert('Checked in successfully!');
@@ -122,28 +119,25 @@ export class ScannerComponent {
 
 
   checkout() {
-    const data = {
-      userId: localStorage.getItem('user_id')
-    };
+   const userId = localStorage.getItem('user_id');
 
-    this.timeService.checkOut(data).subscribe(
+    this.timeService.checkOut(userId).subscribe(
       (response) => {
         // Handle successful checkout response here
         alert('Checked out successfully!');
-        this.router.navigate([''])
+        this.router.navigate(['']);
         // You can perform any necessary actions upon successful checkout
-
       },
       (error) => {
         // Handle errors here
         console.error('Error during checkout:', error);
         alert('Check-out failed: ' + error.message);
-        this.router.navigate([''])
-
+        this.router.navigate(['']);
         // Perform error handling or show error messages to the user
       }
     );
   }
+
 
   goBack() {
 
