@@ -8,9 +8,9 @@ const router = express.Router();
 const { createRole, deleteRole, getAllRoles, updateRole } = roleController;
 const { verifyAdmin } = verifyToken;
 
-router.post('/create', verifyAdmin, createRole);
-router.put('/update/:id', verifyAdmin, updateRole);
+router.post('/create', /*verifyAdmin,*/ createRole);
+router.put('/update/:id', /*verifyAdmin,*/ updateRole);
 router.get('/getAll', getAllRoles);
-router.delete('/deleteRole/:id', verifyAdmin, deleteRole);
+router.delete('/deleteRole/:id', /*verifyAdmin,*/ deleteRole);
 
 module.exports = router;
