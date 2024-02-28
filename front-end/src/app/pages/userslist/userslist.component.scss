@@ -10,3 +10,53 @@
   margin: 20px auto;
 }
 
+.header-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* ปรับขอบล่างของหัวข้อ */
+}
+.header-title h1 {
+  font-size: 24px;
+  color: #333; /* สีข้อความของหัวข้อ */
+  font-weight: bold;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Responsive Styles for Small Screens */
+@media screen and (max-width: 600px) {
+  .mat-elevation-z8 {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  th, td {
+    padding: 8px;
+    font-size: 18px;
+  }
+
+  .flex {
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.container {
+  width: 100vh;
+  height: 80vh;
+}
