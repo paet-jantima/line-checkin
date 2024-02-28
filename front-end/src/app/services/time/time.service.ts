@@ -21,15 +21,15 @@ export class TimeRecordService {
 
 
   checkIn(userId: any): Observable<any> {
-    return this.http.post<any>(`${apiUrls.timeServiceApi}checkin`, userId);
+    return this.http.post<any>(`${apiUrls.timeServiceApi}checkin/${userId}`, userId);
   }
 
   checkOut(userId: any): Observable<any> {
-    return this.http.post<any>(`${apiUrls.timeServiceApi}checkout`, userId);
+    return this.http.post<any>(`${apiUrls.timeServiceApi}checkout/${userId}`, userId);
   }
 
   edit(userId: any): Observable<any> {
-    return this.http.post<any>(`${apiUrls.timeServiceApi}edit`, userId);
+    return this.http.post<any>(`${apiUrls.timeServiceApi}edit/${userId}`, userId);
   }
 
 
