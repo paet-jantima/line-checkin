@@ -17,7 +17,7 @@ export class UserslistComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort | undefined;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | undefined;
-  displayedColumns: string[] = ['index', 'Name',  'absentDays', 'lateDays'];
+  displayedColumns: string[] = ['index', 'Name',  'absent', 'late'];
   displayedData = this.displayedColumns.slice(0, 5);
   dataSource: MatTableDataSource<User>= new MatTableDataSource<User>();
   pageIndex: number = 0;
